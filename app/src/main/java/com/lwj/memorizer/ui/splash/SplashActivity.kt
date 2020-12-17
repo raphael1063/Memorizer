@@ -1,3 +1,18 @@
 package com.lwj.memorizer.ui.splash
 
-class SplashActivity
+import com.lwj.memorizer.R
+import com.lwj.memorizer.base.BaseActivity
+import com.lwj.memorizer.databinding.ActivitySplashBinding
+
+class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(
+    R.layout.activity_splash,
+    SplashViewModel::class.java
+) {
+    override fun start() {
+
+    }
+
+    override fun onObserve() {
+    }
+
+}
