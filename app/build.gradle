@@ -89,8 +89,8 @@ dependencies {
     /*Constraint Layout*/
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    /*Timber*/
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    /*Logger*/
+    implementation 'com.orhanobut:logger:2.2.0'
 
     /*Koin*/
     // Koin AndroidX Scope features
@@ -105,5 +105,8 @@ dependencies {
     implementation "org.koin:koin-androidx-compose:$koin_version"
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    /*Lottie*/
+    implementation "com.airbnb.android:lottie:$lottie_version"
 
 }
