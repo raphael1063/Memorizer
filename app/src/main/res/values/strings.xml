@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Memorizer</string>
     <string name="copyright">Copyright 2021. WJSOFT Corp. All Rights Reserved.</string>
+    <string name="login">Login</string>
 </resources>

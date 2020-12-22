@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.lwj.memorizer.data.Repository
 import com.lwj.memorizer.data.api.RetrofitClient
 import com.lwj.memorizer.data.source.remote.RemoteDataSource
+import com.lwj.memorizer.ui.cardbook.CardBookViewModel
 import com.lwj.memorizer.ui.home.HomeViewModel
 import com.lwj.memorizer.ui.login.LoginViewModel
 import com.lwj.memorizer.ui.splash.SplashViewModel
@@ -23,6 +24,8 @@ class ViewModelFactory private constructor(
                     LoginViewModel(repository)
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(repository)
+                isAssignableFrom(CardBookViewModel::class.java) ->
+                    CardBookViewModel(repository)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
