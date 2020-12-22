@@ -1,11 +1,11 @@
 package com.lwj.memorizer.ui.login
 
-import android.content.Intent
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.databinding.ActivityLoginBinding
 import com.lwj.memorizer.ext.openActivity
-import com.lwj.memorizer.ui.home.HomeActivity
+import com.lwj.memorizer.ui.home.HomeFragment
+import com.lwj.memorizer.ui.main.MainActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(
     R.layout.activity_login,
@@ -18,7 +18,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(
         viewModel.run {
             actionLogin.observe(this@LoginActivity, { event ->
                 event.getContentIfNotHandled()?.let {
-                    openActivity(HomeActivity::class.java)
+                    openActivity(MainActivity::class.java)
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                     finishAffinity()
                 }

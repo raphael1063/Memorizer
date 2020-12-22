@@ -8,6 +8,8 @@ import com.lwj.memorizer.data.source.remote.RemoteDataSource
 import com.lwj.memorizer.ui.cardbook.CardBookViewModel
 import com.lwj.memorizer.ui.home.HomeViewModel
 import com.lwj.memorizer.ui.login.LoginViewModel
+import com.lwj.memorizer.ui.main.MainViewModel
+import com.lwj.memorizer.ui.myaccount.MyAccountViewModel
 import com.lwj.memorizer.ui.splash.SplashViewModel
 
 @Suppress("UNCHECKED_CAST")
@@ -22,10 +24,14 @@ class ViewModelFactory private constructor(
                     SplashViewModel(repository)
                 isAssignableFrom(LoginViewModel::class.java) ->
                     LoginViewModel(repository)
+                isAssignableFrom(MainViewModel::class.java) ->
+                    MainViewModel(repository)
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(repository)
                 isAssignableFrom(CardBookViewModel::class.java) ->
                     CardBookViewModel(repository)
+                isAssignableFrom(MyAccountViewModel::class.java) ->
+                    MyAccountViewModel(repository)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

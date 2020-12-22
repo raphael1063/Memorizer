@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.lwj.memorizer.ui.home.HomeFragment"
+        android:label="Home"/>
+
+    <fragment
+        android:id="@+id/nav_cardbook"
+        android:name="com.lwj.memorizer.ui.cardbook.CardBookFragment"
+        android:label="Home"/>
+
+    <fragment
+        android:id="@+id/nav_my_account"
+        android:name="com.lwj.memorizer.ui.myaccount.MyAccountFragment"
+        android:label="Home"/>
+
+</navigation>
