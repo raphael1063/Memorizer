@@ -1,6 +1,8 @@
 package com.lwj.memorizer.base
 
 import android.app.Application
+import com.lwj.memorizer.di.dataSourceModule
+import com.lwj.memorizer.di.repositoryModule
 import com.lwj.memorizer.di.viewModelModule
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -15,11 +17,21 @@ class BaseApplication : Application() {
         super.onCreate()
         instance = this
         startKoin {
-            androidLogger()
             androidContext(this@BaseApplication)
-            modules(viewModelModule)
+            androidLogger()
+            modules(
+                listOf(
+                    repositoryModule,
+                    dataSourceModule,
+                    viewModelModule
+                )
+            )
         }
-        Logger.addLogAdapter(AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag("LOGGER").build()))
+        Logger.addLogAdapter(
+            AndroidLogAdapter(
+                PrettyFormatStrategy.newBuilder().tag("LOGGER").build()
+            )
+        )
 
     }
 

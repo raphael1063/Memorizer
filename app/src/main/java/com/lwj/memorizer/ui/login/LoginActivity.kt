@@ -6,12 +6,19 @@ import com.lwj.memorizer.databinding.ActivityLoginBinding
 import com.lwj.memorizer.ext.openActivity
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.main.MainActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(
-    R.layout.activity_login,
-    LoginViewModel::class.java
+class LoginActivity : BaseActivity<ActivityLoginBinding>(
+    R.layout.activity_login
 ) {
+
+    private val viewModel: LoginViewModel by viewModel()
+
     override fun start() {
+        binding.apply {
+            vm = viewModel
+            lifecycleOwner = this@LoginActivity
+        }
     }
 
     override fun onObserve() {

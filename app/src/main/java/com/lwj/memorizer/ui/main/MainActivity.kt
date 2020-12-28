@@ -13,11 +13,14 @@ import com.lwj.memorizer.ui.cardbook.CardBookFragment
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.myaccount.MyAccountFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
-    R.layout.activity_main,
-    MainViewModel::class.java
+class MainActivity : BaseActivity<ActivityMainBinding>(
+    R.layout.activity_main
 ) {
+
+    private val viewModel: MainViewModel by viewModel()
+
     override fun start() {
        setBinding()
     }

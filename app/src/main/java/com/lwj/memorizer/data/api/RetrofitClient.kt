@@ -13,12 +13,12 @@ object RetrofitClient {
     val retrofit: Retrofit
         get() = provideRetrofit()
 
-    val client: RetrofitService
+    val client: ApiService
         get() = provideRetrofitService()
 
 
-    private fun provideRetrofitService(): RetrofitService {
-        return retrofit.create(RetrofitService::class.java)
+    private fun provideRetrofitService(): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 
     private fun provideRetrofit(): Retrofit {

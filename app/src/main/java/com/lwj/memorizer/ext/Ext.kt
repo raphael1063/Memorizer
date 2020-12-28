@@ -6,15 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import com.lwj.memorizer.ViewModelFactory
-
-fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
-    ViewModelProvider(this, ViewModelFactory.getInstance()).get(viewModelClass)
 
 /*StartActivity*/
 fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {

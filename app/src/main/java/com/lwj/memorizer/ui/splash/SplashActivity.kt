@@ -8,9 +8,8 @@ import com.lwj.memorizer.ext.openActivity
 import com.lwj.memorizer.ui.login.LoginActivity
 import kotlinx.coroutines.*
 
-class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(
-    R.layout.activity_splash,
-    SplashViewModel::class.java
+class SplashActivity : BaseActivity<ActivitySplashBinding>(
+    R.layout.activity_splash
 ) {
 
     override fun start() {

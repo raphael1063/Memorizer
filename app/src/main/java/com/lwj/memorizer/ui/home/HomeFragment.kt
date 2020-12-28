@@ -7,6 +7,7 @@ import com.lwj.memorizer.databinding.FragmentHomeBinding
 class HomeFragment : BaseFragment<FragmentHomeBinding>(
     R.layout.fragment_home
 ) {
+
     override fun start() {
     }
 
