@@ -1,19 +1,25 @@
 package com.lwj.memorizer.ui.main
 
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.databinding.ActivityMainBinding
+import com.lwj.memorizer.ext.snack
 import com.lwj.memorizer.ui.cardbook.CardBookFragment
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.myaccount.MyAccountFragment
 import com.lwj.memorizer.ui.training.TrainingFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>(
@@ -94,6 +100,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 2 -> R.id.nav_training
                 3 -> R.id.nav_my_account
                 else -> error("no such position: $position")
+            }
+        }
+    }
+
+    private var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        binding.root.snack("Please click BACK again to exit", Snackbar.LENGTH_SHORT) {
+            setActionTextColor(ContextCompat.getColor(this@MainActivity, R.color.black))
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(2000).run {
+                doubleBackToExitPressedOnce = false
             }
         }
     }
