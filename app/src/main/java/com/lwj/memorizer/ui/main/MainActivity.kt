@@ -12,6 +12,7 @@ import com.lwj.memorizer.databinding.ActivityMainBinding
 import com.lwj.memorizer.ui.cardbook.CardBookFragment
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.myaccount.MyAccountFragment
+import com.lwj.memorizer.ui.training.TrainingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,13 +45,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
     private inner class PagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) :
             FragmentStateAdapter(fm, lifecycle) {
-        override fun getItemCount() = 3
+        override fun getItemCount() = 4
 
         override fun createFragment(position: Int): Fragment {
             return when(position) {
                 0 -> HomeFragment()
                 1 -> CardBookFragment()
-                2 -> MyAccountFragment()
+                2 -> TrainingFragment()
+                3 -> MyAccountFragment()
                 else -> error("no such position: $position")
             }
         }
@@ -67,8 +69,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 binding.homeVp2.currentItem = 1
                 return true
             }
-            R.id.nav_my_account -> {
+            R.id.nav_training -> {
                 binding.homeVp2.currentItem = 2
+                return true
+            }
+            R.id.nav_my_account -> {
+                binding.homeVp2.currentItem = 3
                 return true
             }
         }
@@ -81,7 +87,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             home_bottom_nav_view.selectedItemId = when (position) {
                 0 -> R.id.nav_home
                 1 -> R.id.nav_cardbook
-                2 -> R.id.nav_my_account
+                2 -> R.id.nav_training
+                3 -> R.id.nav_my_account
                 else -> error("no such position: $position")
             }
         }

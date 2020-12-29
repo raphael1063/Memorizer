@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_my_account"
             app:destination="@id/nav_my_account" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_training"
+            app:destination="@id/nav_training" />
     </fragment>
 
     <fragment
@@ -24,6 +27,30 @@
         <action
             android:id="@+id/action_nav_cardbook_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_cardbook_to_nav_training"
+            app:destination="@id/nav_training" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_training"
+        android:name="com.lwj.memorizer.ui.training.TrainingFragment"
+        android:label="Cardbook">
+        <action
+            android:id="@+id/action_nav_cardbook_to_nav_my_account"
+            app:destination="@id/nav_my_account" />
+        <action
+            android:id="@+id/action_nav_cardbook_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_training_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_training_to_nav_cardbook"
+            app:destination="@id/nav_cardbook" />
+        <action
+            android:id="@+id/action_nav_training_to_nav_my_account"
+            app:destination="@id/nav_my_account" />
     </fragment>
 
     <fragment
@@ -36,6 +63,9 @@
         <action
             android:id="@+id/action_nav_my_account_to_nav_cardbook"
             app:destination="@id/nav_cardbook" />
+        <action
+            android:id="@+id/action_nav_my_account_to_nav_training"
+            app:destination="@id/nav_training" />
     </fragment>
 
 </navigation>
