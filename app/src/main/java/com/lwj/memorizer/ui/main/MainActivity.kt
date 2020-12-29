@@ -27,6 +27,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
     private fun setBinding() {
         binding.apply {
+            vm = viewModel
+            lifecycleOwner = this@MainActivity
             homeVp2.apply {
                 adapter = PagerAdapter(supportFragmentManager, lifecycle)
                 registerOnPageChangeCallback(PageChangeCallback())

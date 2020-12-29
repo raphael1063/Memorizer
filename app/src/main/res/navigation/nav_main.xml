@@ -5,16 +5,37 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.lwj.memorizer.ui.home.HomeFragment"
-        android:label="Home"/>
+        android:label="Home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_cardbook3"
+            app:destination="@id/nav_cardbook" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_my_account"
+            app:destination="@id/nav_my_account" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_cardbook"
         android:name="com.lwj.memorizer.ui.cardbook.CardBookFragment"
-        android:label="Home"/>
+        android:label="Cardbook">
+        <action
+            android:id="@+id/action_nav_cardbook_to_nav_my_account"
+            app:destination="@id/nav_my_account" />
+        <action
+            android:id="@+id/action_nav_cardbook_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_account"
         android:name="com.lwj.memorizer.ui.myaccount.MyAccountFragment"
-        android:label="Home"/>
+        android:label="My Account">
+        <action
+            android:id="@+id/action_nav_my_account_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_my_account_to_nav_cardbook"
+            app:destination="@id/nav_cardbook" />
+    </fragment>
 
 </navigation>

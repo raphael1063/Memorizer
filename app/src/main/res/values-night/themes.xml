@@ -28,4 +28,10 @@
         <item name="android:textStyle">bold</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorOnSurface">@color/purple_300</item>
+        <item name="android:background">@color/black</item>
+    </style>
 </resources>
