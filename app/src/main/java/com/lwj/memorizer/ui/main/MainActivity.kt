@@ -75,6 +75,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             R.id.nav_cardbook -> {
                 binding.homeVp2.currentItem = 1
                 binding.tvToolbarTitle.text = resources.getText(R.string.cardbook)
+                binding.mainToolbar.menu
                 return true
             }
             R.id.nav_training -> {
