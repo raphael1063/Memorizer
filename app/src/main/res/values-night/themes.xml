@@ -31,7 +31,12 @@
 
     <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/purple_100</item>
-        <item name="colorOnSurface">@color/purple_300</item>
+        <item name="colorOnSurface">@color/grey</item>
         <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="MainToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">#323232</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>

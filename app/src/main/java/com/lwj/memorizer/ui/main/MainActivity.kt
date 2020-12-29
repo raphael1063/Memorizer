@@ -63,18 +63,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
         when (checked.itemId) {
             R.id.nav_home -> {
                 binding.homeVp2.currentItem = 0
+                binding.tvToolbarTitle.text = resources.getText(R.string.home)
                 return true
             }
             R.id.nav_cardbook -> {
                 binding.homeVp2.currentItem = 1
+                binding.tvToolbarTitle.text = resources.getText(R.string.cardbook)
                 return true
             }
             R.id.nav_training -> {
                 binding.homeVp2.currentItem = 2
+                binding.tvToolbarTitle.text = resources.getText(R.string.training)
                 return true
             }
             R.id.nav_my_account -> {
                 binding.homeVp2.currentItem = 3
+                binding.tvToolbarTitle.text = resources.getText(R.string.my_account)
                 return true
             }
         }
@@ -84,7 +88,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
     private inner class PageChangeCallback: ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
-            home_bottom_nav_view.selectedItemId = when (position) {
+            binding.homeBottomNavView.selectedItemId = when (position) {
                 0 -> R.id.nav_home
                 1 -> R.id.nav_cardbook
                 2 -> R.id.nav_training

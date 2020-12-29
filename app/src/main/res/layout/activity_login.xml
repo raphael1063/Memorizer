@@ -14,13 +14,14 @@
         android:layout_height="match_parent">
 
         <TextView
-            style="@style/TextRegular"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_splash_text"
             android:padding="16dp"
             android:text="@string/app_name"
             android:textSize="36sp"
+            android:theme="@style/TextRegular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,15 +29,15 @@
             app:layout_constraintVertical_bias="0.2" />
 
         <Button
-            style="@style/TextRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{() -> vm.onLogin()}"
             android:text="@string/login"
+            android:theme="@style/TextRegular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
