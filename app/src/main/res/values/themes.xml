@@ -7,8 +7,8 @@
         <item name="colorOnSurface">@color/white</item>
         <item name="colorOnBackground">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/purple_200</item>
+        <item name="colorSecondaryVariant">@color/purple_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -36,7 +36,7 @@
     </style>
 
     <style name="MainToolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">#E6E6E6</item>
+        <item name="android:background">@color/super_light_grey</item>
         <item name="android:textColor">@color/black</item>
     </style>
 </resources>

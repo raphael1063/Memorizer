@@ -2,12 +2,11 @@ package com.lwj.memorizer.ui.cardbook
 
 import androidx.lifecycle.ViewModelProvider
 import com.lwj.memorizer.R
-import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.base.BaseFragment
-import com.lwj.memorizer.databinding.FragmentCardBookBinding
+import com.lwj.memorizer.databinding.FragmentCardbookBinding
 
-class CardBookFragment : BaseFragment<FragmentCardBookBinding>(
-    R.layout.fragment_card_book
+class CardBookFragment : BaseFragment<FragmentCardbookBinding>(
+    R.layout.fragment_cardbook
 ) {
 
     private val viewModel by lazy {
