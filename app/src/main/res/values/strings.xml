@@ -7,4 +7,7 @@
     <string name="my_account">My Account</string>
     <string name="training">Training</string>
     <string name="search">Search</string>
+
+    <!--    Alert   -->
+    <string name="back_press_alert">Please click BACK again to exit</string>
 </resources>

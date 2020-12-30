@@ -13,6 +13,7 @@ import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.databinding.ActivityMainBinding
 import com.lwj.memorizer.ext.snack
 import com.lwj.memorizer.ui.cardbook.CardBookFragment
+import com.lwj.memorizer.ui.common.PagerAdapter
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.myaccount.MyAccountFragment
 import com.lwj.memorizer.ui.training.TrainingFragment
@@ -28,6 +29,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
     private val viewModel: MainViewModel by viewModel()
 
+    private val fragments = arrayListOf<Fragment>(
+        HomeFragment(),
+        CardBookFragment(),
+        TrainingFragment(),
+        MyAccountFragment()
+    )
+
     override fun start() {
        setBinding()
     }
@@ -36,72 +44,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
         binding.apply {
             vm = viewModel
             lifecycleOwner = this@MainActivity
-            homeVp2.apply {
-                adapter = PagerAdapter(supportFragmentManager, lifecycle)
-                registerOnPageChangeCallback(PageChangeCallback())
-            }
-            homeBottomNavView.apply {
-                setOnNavigationItemSelectedListener { navigationSelected(it) }
-            }
+            vp2Main.adapter = PagerAdapter(supportFragmentManager, lifecycle, fragments)
         }
     }
 
     override fun onObserve() {
-    }
-
-    private inner class PagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) :
-            FragmentStateAdapter(fm, lifecycle) {
-        override fun getItemCount() = 4
-
-        override fun createFragment(position: Int): Fragment {
-            return when(position) {
-                0 -> HomeFragment()
-                1 -> CardBookFragment()
-                2 -> TrainingFragment()
-                3 -> MyAccountFragment()
-                else -> error("no such position: $position")
-            }
-        }
-    }
-
-    private fun navigationSelected(item: MenuItem): Boolean {
-        val checked = item.setChecked(true)
-        when (checked.itemId) {
-            R.id.nav_home -> {
-                binding.homeVp2.currentItem = 0
-                binding.tvToolbarTitle.text = resources.getText(R.string.home)
-                return true
-            }
-            R.id.nav_cardbook -> {
-                binding.homeVp2.currentItem = 1
-                binding.tvToolbarTitle.text = resources.getText(R.string.cardbook)
-                binding.mainToolbar.menu
-                return true
-            }
-            R.id.nav_training -> {
-                binding.homeVp2.currentItem = 2
-                binding.tvToolbarTitle.text = resources.getText(R.string.training)
-                return true
-            }
-            R.id.nav_my_account -> {
-                binding.homeVp2.currentItem = 3
-                binding.tvToolbarTitle.text = resources.getText(R.string.my_account)
-                return true
-            }
-        }
-        return false
-    }
-
-    private inner class PageChangeCallback: ViewPager2.OnPageChangeCallback() {
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-            binding.homeBottomNavView.selectedItemId = when (position) {
-                0 -> R.id.nav_home
-                1 -> R.id.nav_cardbook
-                2 -> R.id.nav_training
-                3 -> R.id.nav_my_account
-                else -> error("no such position: $position")
-            }
+        with(viewModel) {
+            currentNavigationItem.observe(this@MainActivity, { resId ->
+                binding.bnvMain.selectedItemId = resId
+            })
+            currentViewPagerItem.observe(this@MainActivity, { position ->
+                binding.vp2Main.currentItem = position
+            })
         }
     }
 
@@ -113,7 +67,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
         }
 
         this.doubleBackToExitPressedOnce = true
-        binding.root.snack("Please click BACK again to exit", Snackbar.LENGTH_SHORT) {
+        binding.root.snack(R.string.back_press_alert, Snackbar.LENGTH_SHORT) {
             setActionTextColor(ContextCompat.getColor(this@MainActivity, R.color.black))
         }
 
