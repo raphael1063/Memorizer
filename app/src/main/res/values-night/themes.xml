@@ -35,8 +35,9 @@
         <item name="android:background">@color/black</item>
     </style>
 
-    <style name="MainToolbar" parent="Widget.AppCompat.Toolbar">
+    <style name="MainToolbar" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:background">@color/heavy_grey</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/heavy_grey</item>
     </style>
 </resources>
