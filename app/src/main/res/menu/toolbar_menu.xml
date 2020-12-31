@@ -7,6 +7,11 @@
         android:title="@string/search"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/toolbar_menu_add_cardbook"
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_cardbook"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/toolbar_menu_settings"
         android:title="@string/settings"
         app:showAsAction="never" />

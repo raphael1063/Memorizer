@@ -1,5 +1,6 @@
 package com.lwj.memorizer.ui.main
 
+import android.annotation.SuppressLint
 import android.view.Menu
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
@@ -34,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
     )
 
     override fun start() {
-       setBinding()
+        setBinding()
     }
 
     private fun setBinding() {
@@ -46,6 +47,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onObserve() {
         with(viewModel) {
             currentNavigationItem.observe(this@MainActivity, { resId ->
@@ -54,14 +56,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             currentViewPagerItem.observe(this@MainActivity, { position ->
                 binding.vp2Main.currentItem = position
             })
-            isSearchMenuVisible.observe(this@MainActivity, { isVisible ->
-                    binding.toolbarMain.menu[0].isVisible = isVisible
+            isCardBookView.observe(this@MainActivity, { boolean ->
+                binding.toolbarMain.menu[0].isVisible = boolean
+                binding.toolbarMain.menu[1].isVisible = boolean
             })
             isSearchMenuActivate.observe(this@MainActivity, { isActivated ->
-                if(isActivated) {
-                    binding.toolbarMain.menu[0].icon = resources.getDrawable(R.drawable.ic_search_active, null)
+                if (isActivated) {
+                    binding.toolbarMain.menu[0].icon =
+                        resources.getDrawable(R.drawable.ic_search_active, null)
                 } else {
-                    binding.toolbarMain.menu[0].icon = resources.getDrawable(R.drawable.ic_search_inactive, null)
+                    binding.toolbarMain.menu[0].icon =
+                        resources.getDrawable(R.drawable.ic_search_inactive, null)
                 }
             })
             actionSettingButtonClicked.observe(this@MainActivity, { event ->
