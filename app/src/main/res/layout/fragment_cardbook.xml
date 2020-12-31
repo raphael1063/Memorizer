@@ -5,9 +5,14 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="vm"
             type="com.lwj.memorizer.ui.cardbook.CardBookViewModel" />
+        <variable
+            name="svm"
+            type="com.lwj.memorizer.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +20,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/et_search_cardbook"
+            android:id="@+id/sv_search_cardbook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
@@ -37,7 +42,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_search_cardbook"
+            app:layout_constraintTop_toBottomOf="@+id/sv_search_cardbook"
             app:spanCount="3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

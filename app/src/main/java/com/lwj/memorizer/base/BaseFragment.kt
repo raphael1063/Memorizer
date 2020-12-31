@@ -14,7 +14,7 @@ abstract class BaseFragment<VB: ViewDataBinding>(
     private val layoutRes: Int
 ) : Fragment() {
 
-    private lateinit var binding: VB
+    protected lateinit var binding: VB
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_cardbook_search"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:id="@+id/toolbar_menu_cardbook_search"
+        android:icon="@drawable/ic_search_inactive"
         android:title="@string/search"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/toolbar_menu_settings"
         android:title="@string/settings"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_support"
+        android:id="@+id/toolbar_menu_support"
         android:title="@string/support"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_about"
+        android:id="@+id/toolbar_menu_about"
         android:title="@string/about"
         app:showAsAction="never" />
 </menu>

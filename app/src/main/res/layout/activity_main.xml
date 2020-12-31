@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -25,14 +25,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/toolbar_menu"
+            bind:setOnToolbarItemClickListener="@{vm}"
             tools:background="@color/super_light_grey">
 
             <TextView
                 android:id="@+id/tv_toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="1dp"
                 android:gravity="center"
+                android:paddingBottom="2dp"
                 android:text="@{vm.toolbarTitle}"
                 android:textSize="20sp"
                 android:theme="@style/TextBold"
@@ -49,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
-            bind:PageChangeCallback="@{vm}" />
+            bind:setOnPageChangeCallback="@{vm}" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_main"
@@ -61,6 +62,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_nav_menu"
-            bind:Listener="@{vm}" />
+            bind:setOnNavigationItemSelectedListener="@{vm}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

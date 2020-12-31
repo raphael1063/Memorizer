@@ -5,11 +5,33 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.lwj.memorizer.R
+
+/* View Visibility */
+fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+fun View.invisible() {
+    visibility = View.INVISIBLE
+}
+
+fun View.gone() {
+    visibility = View.GONE
+}
+
+fun View.slideUp(context: Context) {
+    startAnimation(AnimationUtils.loadAnimation(context, R.anim.slide_up))
+}
+
+fun View.slideDown(context: Context) {
+    startAnimation(AnimationUtils.loadAnimation(context, R.anim.slide_down))
+}
 
 /*StartActivity*/
 fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {

@@ -1,12 +1,9 @@
 package com.lwj.memorizer.ui.main
 
-import android.view.MenuItem
+import android.view.Menu
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
@@ -45,6 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             vm = viewModel
             lifecycleOwner = this@MainActivity
             vp2Main.adapter = PagerAdapter(supportFragmentManager, lifecycle, fragments)
+            toolbarMain.menu.getItem(0)
         }
     }
 
@@ -55,6 +53,31 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             })
             currentViewPagerItem.observe(this@MainActivity, { position ->
                 binding.vp2Main.currentItem = position
+            })
+            isSearchMenuVisible.observe(this@MainActivity, { isVisible ->
+                    binding.toolbarMain.menu[0].isVisible = isVisible
+            })
+            isSearchMenuActivate.observe(this@MainActivity, { isActivated ->
+                if(isActivated) {
+                    binding.toolbarMain.menu[0].icon = resources.getDrawable(R.drawable.ic_search_active, null)
+                } else {
+                    binding.toolbarMain.menu[0].icon = resources.getDrawable(R.drawable.ic_search_inactive, null)
+                }
+            })
+            actionSettingButtonClicked.observe(this@MainActivity, { event ->
+                event.getContentIfNotHandled()?.let {
+
+                }
+            })
+            actionSupportButtonClicked.observe(this@MainActivity, { event ->
+                event.getContentIfNotHandled()?.let {
+
+                }
+            })
+            actionAboutButtonClicked.observe(this@MainActivity, { event ->
+                event.getContentIfNotHandled()?.let {
+
+                }
             })
         }
     }
@@ -76,5 +99,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 doubleBackToExitPressedOnce = false
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
     }
 }
