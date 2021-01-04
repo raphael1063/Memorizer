@@ -10,7 +10,7 @@ import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.databinding.ActivityMainBinding
 import com.lwj.memorizer.ext.snack
-import com.lwj.memorizer.ui.cardbook.CardBookFragment
+import com.lwj.memorizer.ui.cardbook.CardbookFragment
 import com.lwj.memorizer.ui.common.PagerAdapter
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.myaccount.MyAccountFragment
@@ -29,7 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
     private val fragments = arrayListOf<Fragment>(
         HomeFragment(),
-        CardBookFragment(),
+        CardbookFragment(),
         TrainingFragment(),
         MyAccountFragment()
     )
@@ -56,7 +56,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             currentViewPagerItem.observe(this@MainActivity, { position ->
                 binding.vp2Main.currentItem = position
             })
-            isCardBookView.observe(this@MainActivity, { boolean ->
+            isCardbookView.observe(this@MainActivity, { boolean ->
                 binding.toolbarMain.menu[0].isVisible = boolean
                 binding.toolbarMain.menu[1].isVisible = boolean
             })

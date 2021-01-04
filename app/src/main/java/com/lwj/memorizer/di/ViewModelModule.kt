@@ -1,6 +1,6 @@
 package com.lwj.memorizer.di
 
-import com.lwj.memorizer.ui.cardbook.CardBookViewModel
+import com.lwj.memorizer.ui.cardbook.CardbookViewModel
 import com.lwj.memorizer.ui.home.HomeViewModel
 import com.lwj.memorizer.ui.login.LoginViewModel
 import com.lwj.memorizer.ui.main.MainViewModel
@@ -14,6 +14,6 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get()) }
-    viewModel { CardBookViewModel(get()) }
+    viewModel { CardbookViewModel(get()) }
     viewModel { MyAccountViewModel(get()) }
 }

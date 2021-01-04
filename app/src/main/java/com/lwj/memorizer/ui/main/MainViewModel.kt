@@ -21,9 +21,9 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     val toolbarTitle: LiveData<String>
         get() = _toolbarTitle
 
-    private val _isCardBookView = MutableLiveData<Boolean>()
-    val isCardBookView: LiveData<Boolean>
-        get() = _isCardBookView
+    private val _isCardbookView = MutableLiveData<Boolean>()
+    val isCardbookView: LiveData<Boolean>
+        get() = _isCardbookView
 
     private val _isSearchMenuActivate = MutableLiveData<Boolean>()
     val isSearchMenuActivate: LiveData<Boolean>
@@ -51,22 +51,22 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
             R.id.nav_home -> {
                 _currentViewPagerItem.value = 0
                 _toolbarTitle.value = "Home"
-                _isCardBookView.value = false
+                _isCardbookView.value = false
             }
             R.id.nav_cardbook -> {
                 _currentViewPagerItem.value = 1
                 _toolbarTitle.value = "Cardbook"
-                _isCardBookView.value = true
+                _isCardbookView.value = true
             }
             R.id.nav_training -> {
                 _currentViewPagerItem.value = 2
                 _toolbarTitle.value = "Training"
-                _isCardBookView.value = false
+                _isCardbookView.value = false
             }
             R.id.nav_my_account -> {
                 _currentViewPagerItem.value = 3
                 _toolbarTitle.value = "My Account"
-                _isCardBookView.value = false
+                _isCardbookView.value = false
             }
         }
     }

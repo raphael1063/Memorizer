@@ -1,6 +1,7 @@
 package com.lwj.memorizer.base
 
 import android.app.Application
+import com.lwj.memorizer.di.adapterModule
 import com.lwj.memorizer.di.dataSourceModule
 import com.lwj.memorizer.di.repositoryModule
 import com.lwj.memorizer.di.viewModelModule
@@ -23,7 +24,8 @@ class BaseApplication : Application() {
                 listOf(
                     repositoryModule,
                     dataSourceModule,
-                    viewModelModule
+                    viewModelModule,
+                    adapterModule
                 )
             )
         }

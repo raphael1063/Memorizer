@@ -1,8 +1,5 @@
 package com.lwj.memorizer.ui.cardbook
 
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
 import com.lwj.memorizer.databinding.FragmentCardbookBinding
@@ -11,16 +8,19 @@ import com.lwj.memorizer.ext.slideDown
 import com.lwj.memorizer.ext.slideUp
 import com.lwj.memorizer.ext.visible
 import com.lwj.memorizer.ui.main.MainViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CardBookFragment : BaseFragment<FragmentCardbookBinding>(
+class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
     R.layout.fragment_cardbook
 ) {
 
-    private val viewModel : CardBookViewModel by viewModel()
+    private val viewModel : CardbookViewModel by viewModel()
 
     private val sharedViewModel : MainViewModel by sharedViewModel()
+
+    private val adapter : CardbookAdapter by inject()
 
     override fun start() {
 
@@ -30,6 +30,7 @@ class CardBookFragment : BaseFragment<FragmentCardbookBinding>(
         binding.apply {
             vm = viewModel
             svm = sharedViewModel
+            rvCardbookList.adapter = adapter
         }
     }
 
