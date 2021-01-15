@@ -1,5 +1,6 @@
 package com.lwj.memorizer.ui.main
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.lwj.memorizer.Event
@@ -7,7 +8,7 @@ import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
 
-class MainViewModel(private val repository: Repository) : BaseViewModel() {
+class MainViewModel @ViewModelInject constructor() : BaseViewModel() {
 
     private val _currentNavigationItem = MutableLiveData<Int>()
     val currentNavigationItem: LiveData<Int>
@@ -47,7 +48,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         get() = _actionAboutButtonClicked
 
     fun setCurrentNavId(id: Int) {
-        when(id) {
+        when (id) {
             R.id.nav_home -> {
                 _currentViewPagerItem.value = 0
                 _toolbarTitle.value = "Home"

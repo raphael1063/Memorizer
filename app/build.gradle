@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -94,20 +95,6 @@ dependencies {
     /*Logger*/
     implementation 'com.orhanobut:logger:2.2.0'
 
-    /*Koin*/
-    // Koin AndroidX Scope features
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    // Koin AndroidX ViewModel features
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    // Koin AndroidX Fragment features
-    implementation "org.koin:koin-androidx-fragment:$koin_version"
-    // Koin AndroidX WorkManager
-    implementation "org.koin:koin-androidx-workmanager:$koin_version"
-    // Koin AndroidX Jetpack Compose
-    implementation "org.koin:koin-androidx-compose:$koin_version"
-    // Koin AndroidX Experimental features
-    implementation "org.koin:koin-androidx-ext:$koin_version"
-
     /*Lottie*/
     implementation "com.airbnb.android:lottie:$lottie_version"
 
@@ -118,5 +105,12 @@ dependencies {
     implementation "androidx.room:room-runtime:2.3.0-alpha04"
     annotationProcessor "androidx.room:room-compiler:2.3.0-alpha04"
     kapt "androidx.room:room-compiler:2.3.0-alpha04"
+
+    /*Hilt*/
+    implementation "com.google.dagger:hilt-android:2.31-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.31-alpha"
+    implementation "androidx.hilt:hilt-common:1.0.0-alpha02"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
 
 }

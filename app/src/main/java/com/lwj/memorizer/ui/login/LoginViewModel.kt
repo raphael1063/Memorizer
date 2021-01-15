@@ -6,7 +6,7 @@ import com.lwj.memorizer.Event
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
 
-class LoginViewModel(private val repository: Repository) : BaseViewModel() {
+class LoginViewModel() : BaseViewModel() {
 
     private val _actionLogin = MutableLiveData<Event<Unit>>()
     val actionLogin: LiveData<Event<Unit>>

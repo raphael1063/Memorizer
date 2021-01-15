@@ -6,8 +6,10 @@ import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.databinding.ActivitySplashBinding
 import com.lwj.memorizer.ext.openActivity
 import com.lwj.memorizer.ui.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(
     R.layout.activity_splash
 ) {

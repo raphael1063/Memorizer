@@ -4,15 +4,17 @@ import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.databinding.ActivityLoginBinding
 import com.lwj.memorizer.ext.openActivity
-import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.main.MainActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(
     R.layout.activity_login
 ) {
 
-    private val viewModel: LoginViewModel by viewModel()
+    private val viewModel: LoginViewModel by lazy {
+        LoginViewModel()
+    }
 
     override fun start() {
         binding.apply {
