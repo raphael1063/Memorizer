@@ -1,5 +1,6 @@
 package com.lwj.memorizer.ui.login
 
+import androidx.activity.viewModels
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.databinding.ActivityLoginBinding
@@ -12,9 +13,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
     R.layout.activity_login
 ) {
 
-    private val viewModel: LoginViewModel by lazy {
-        LoginViewModel()
-    }
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun start() {
         binding.apply {

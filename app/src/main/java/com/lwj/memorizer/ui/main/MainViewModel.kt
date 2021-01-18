@@ -8,7 +8,7 @@ import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
 
-class MainViewModel @ViewModelInject constructor() : BaseViewModel() {
+class MainViewModel @ViewModelInject constructor(private val repository: Repository) : BaseViewModel() {
 
     private val _currentNavigationItem = MutableLiveData<Int>()
     val currentNavigationItem: LiveData<Int>

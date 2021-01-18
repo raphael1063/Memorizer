@@ -10,17 +10,17 @@ import com.lwj.memorizer.ext.slideDown
 import com.lwj.memorizer.ext.slideUp
 import com.lwj.memorizer.ext.visible
 import com.lwj.memorizer.ui.main.MainViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
     R.layout.fragment_cardbook
 ) {
 
-    private val viewModel by viewModels<CardbookViewModel>()
+    private val viewModel by activityViewModels<CardbookViewModel>()
 
     private val sharedViewModel by activityViewModels<MainViewModel>()
 
-    private val adapter : CardbookAdapter by lazy {
+    private val adapter by lazy {
         CardbookAdapter(viewModel)
     }
 
@@ -37,6 +37,11 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
     }
 
     override fun onObserve() {
+        with(viewModel) {
+            cardbookList.observe(viewLifecycleOwner, { list ->
+                adapter.initCardbookList(list)
+            })
+        }
         with(sharedViewModel) {
             isSearchBarOpened.observe(viewLifecycleOwner, { isVisible ->
                 if(isVisible) {
