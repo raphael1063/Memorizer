@@ -41,14 +41,12 @@
             android:clipToPadding="false"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="4dp"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sv_search_cardbook"
-            tools:listitem="@layout/item_cardbook"
-
-            app:spanCount="3" />
+            tools:listitem="@layout/item_cardbook" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
