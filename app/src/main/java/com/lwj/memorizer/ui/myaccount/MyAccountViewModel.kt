@@ -1,8 +1,10 @@
 package com.lwj.memorizer.ui.myaccount
 
-import androidx.hilt.lifecycle.ViewModelInject
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MyAccountViewModel @ViewModelInject constructor(private val repository: Repository) : BaseViewModel() {
+@HiltViewModel
+class MyAccountViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 }

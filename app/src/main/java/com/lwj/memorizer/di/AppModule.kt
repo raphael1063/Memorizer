@@ -1,12 +1,11 @@
 package com.lwj.memorizer.di
 
-import com.lwj.memorizer.data.Repository
-import com.lwj.memorizer.ui.cardbook.CardbookAdapter
-import com.lwj.memorizer.ui.cardbook.CardbookViewModel
+import android.content.Context
+import com.lwj.memorizer.data.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -14,7 +13,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides
     @Singleton
-    fun repository() = Repository()
+    @Provides
+    fun provideAppDatabase(@ApplicationContext context: Context) = AppDatabase.getInstance(context)
+
+    @Provides
+    fun provideCardbookDao(appDatabase: AppDatabase) = appDatabase.cardbookDao
 }

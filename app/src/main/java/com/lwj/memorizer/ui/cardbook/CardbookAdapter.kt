@@ -3,45 +3,49 @@ package com.lwj.memorizer.ui.cardbook
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lwj.memorizer.R
 import com.lwj.memorizer.data.entities.Cardbook
 import com.lwj.memorizer.databinding.ItemCardbookBinding
-import javax.inject.Inject
 
 class CardbookAdapter(private val viewModel: CardbookViewModel) :
-    RecyclerView.Adapter<CardbookAdapter.CardbookViewHolder>() {
-
-    private var cardbookList = arrayListOf<Cardbook>()
+    ListAdapter<Cardbook, CardbookAdapter.CardbookViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardbookViewHolder {
         return CardbookViewHolder(
             DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.item_cardbook, parent, false
-            )
-        )
+            LayoutInflater.from(parent.context),
+            R.layout.item_cardbook, parent, false
+        ))
     }
 
     override fun onBindViewHolder(holder: CardbookViewHolder, position: Int) {
-        holder.onBind(viewModel, 0)
-    }
-
-    override fun getItemCount() = cardbookList.size
-
-    fun initCardbookList(list: ArrayList<Cardbook>) {
-            cardbookList = list
-            notifyItemRangeInserted(0, cardbookList.size)
+        holder.bind(getItem(position))
     }
 
     inner class CardbookViewHolder(private val binding: ItemCardbookBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(viewModel: CardbookViewModel, contentCount: Int) {
+        fun bind(item: Cardbook) {
             binding.apply {
                 vm = viewModel
-                model = cardbookList[adapterPosition]
-                count = contentCount
+                model = item
+                count = 0 //count of words in the cardbook
                 position = adapterPosition
+                executePendingBindings()
+            }
+        }
+    }
+
+    companion object {
+        private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<Cardbook>() {
+            override fun areItemsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
+                return oldItem === newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
+                return oldItem.idx == newItem.idx
             }
         }
     }

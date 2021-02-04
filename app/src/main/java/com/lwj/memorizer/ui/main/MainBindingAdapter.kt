@@ -31,6 +31,7 @@ fun setOnToolbarItemClickListener(toolbar: Toolbar, viewModel: MainViewModel) {
     toolbar.setOnMenuItemClickListener {
         when (it.itemId) {
             R.id.toolbar_menu_cardbook_search -> viewModel.onSearchMenuClicked()
+            R.id.toolbar_menu_add_cardbook -> viewModel.onAddCardbookClicked()
             R.id.toolbar_menu_settings -> viewModel.onSettingMenuClicked()
             R.id.toolbar_menu_support -> viewModel.onSupportMenuClicked()
             R.id.toolbar_menu_about -> viewModel.onAboutMenuClicked()

@@ -1,14 +1,19 @@
 package com.lwj.memorizer.ui.main
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.lwj.memorizer.Event
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
+import com.lwj.memorizer.data.entities.Cardbook
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(private val repository: Repository) : BaseViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
     private val _currentNavigationItem = MutableLiveData<Int>()
     val currentNavigationItem: LiveData<Int>
@@ -98,5 +103,9 @@ class MainViewModel @ViewModelInject constructor(private val repository: Reposit
 
     fun onAboutMenuClicked() {
         _actionAboutButtonClicked.value = Event(Unit)
+    }
+
+    fun onAddCardbookClicked() = viewModelScope.launch {
+        repository.insertCardbook(Cardbook("title1", false, null))
     }
 }

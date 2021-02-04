@@ -26,29 +26,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> vm.removeCardbook(model.idx)}"
         app:cardCornerRadius="8dp"
         app:contentPadding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" >
+        tools:ignore="ContentDescription">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
+                android:paddingStart="20dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="0dp"
+                android:paddingBottom="20dp"
                 android:src="@drawable/ic_bookmark"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_cardbook_cover"
@@ -70,6 +76,7 @@
                 android:textSize="18sp"
                 android:theme="@style/TextRegular"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_cardbook_cover"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
                 app:layout_constraintStart_toEndOf="@+id/iv_cardbook_cover"
                 app:layout_constraintTop_toTopOf="@+id/iv_cardbook_cover"
                 app:layout_constraintVertical_bias="0.19999999"
@@ -82,7 +89,7 @@
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="2dp"
                 android:text="@{`(` + count + `)`}"
-                android:textColor="@color/purple_300"
+                android:textColor="@color/grey"
                 android:textSize="12sp"
                 android:theme="@style/TextRegular"
                 app:layout_constraintStart_toEndOf="@+id/iv_cardbook_cover"

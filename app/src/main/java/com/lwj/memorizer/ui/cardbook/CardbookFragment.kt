@@ -2,8 +2,10 @@ package com.lwj.memorizer.ui.cardbook
 
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
+import com.lwj.memorizer.data.entities.Cardbook
 import com.lwj.memorizer.databinding.FragmentCardbookBinding
 import com.lwj.memorizer.ext.gone
 import com.lwj.memorizer.ext.slideDown
@@ -33,13 +35,14 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
             vm = viewModel
             svm = sharedViewModel
             rvCardbookList.adapter = adapter
+            (rvCardbookList.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         }
     }
 
     override fun onObserve() {
         with(viewModel) {
             cardbookList.observe(viewLifecycleOwner, { list ->
-                adapter.initCardbookList(list)
+                adapter.submitList(list)
             })
         }
         with(sharedViewModel) {

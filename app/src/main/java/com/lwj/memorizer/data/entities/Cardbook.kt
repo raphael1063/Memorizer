@@ -17,10 +17,6 @@ import androidx.room.PrimaryKey
     tableName = "cardbook"
 )
 data class Cardbook(
-    @PrimaryKey(autoGenerate = true)
-    val idx: Long,
-
-//    val userIdx: Long,
 
     @ColumnInfo(name = "title")
     val title: String,
@@ -30,4 +26,7 @@ data class Cardbook(
 
     @ColumnInfo(name = "cover_image_uri")
     val coverImageUri: String?
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var idx: Long = 0L
+}
