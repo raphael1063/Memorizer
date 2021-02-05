@@ -1,5 +1,6 @@
 package com.lwj.memorizer.ui.main
 
+import android.icu.util.LocaleData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -105,7 +106,11 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
         _actionAboutButtonClicked.value = Event(Unit)
     }
 
-    fun onAddCardbookClicked() = viewModelScope.launch {
-        repository.insertCardbook(Cardbook("title1", false, null))
+    var index = 0
+    fun onAddCardbookClicked() {
+        viewModelScope.launch {
+            repository.insertCardbook(Cardbook( "title $index", false, null))
+        }
+        index++
     }
 }

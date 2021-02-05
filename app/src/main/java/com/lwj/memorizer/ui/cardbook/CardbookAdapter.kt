@@ -41,11 +41,11 @@ class CardbookAdapter(private val viewModel: CardbookViewModel) :
     companion object {
         private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<Cardbook>() {
             override fun areItemsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
-                return oldItem === newItem
+                return oldItem.title == newItem.title
             }
 
             override fun areContentsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
-                return oldItem.idx == newItem.idx
+                return oldItem == newItem
             }
         }
     }

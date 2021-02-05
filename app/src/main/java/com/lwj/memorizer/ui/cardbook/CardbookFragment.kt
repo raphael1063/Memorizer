@@ -23,7 +23,9 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
     private val sharedViewModel by activityViewModels<MainViewModel>()
 
     private val adapter by lazy {
-        CardbookAdapter(viewModel)
+        CardbookAdapter(viewModel).apply {
+            setHasStableIds(true)
+        }
     }
 
     override fun start() {
@@ -35,8 +37,7 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
             vm = viewModel
             svm = sharedViewModel
             rvCardbookList.adapter = adapter
-            (rvCardbookList.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-        }
+       }
     }
 
     override fun onObserve() {
