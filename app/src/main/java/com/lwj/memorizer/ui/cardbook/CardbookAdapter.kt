@@ -8,18 +8,29 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lwj.memorizer.R
 import com.lwj.memorizer.data.entities.Cardbook
+import com.lwj.memorizer.data.entities.CardbookListStatus
 import com.lwj.memorizer.databinding.ItemCardbookGridBinding
 import com.lwj.memorizer.databinding.ItemCardbookLinearBinding
 
-class CardbookAdapter(private val viewModel: CardbookViewModel) :
+class CardbookAdapter(private val viewModel: CardbookViewModel, private val status: CardbookListStatus) :
     ListAdapter<Cardbook, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CardbookGridViewHolder(
-            DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.item_cardbook_grid, parent, false
-        ))
+        return if(status == CardbookListStatus.LINEAR) {
+            CardbookLinearViewHolder(
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item_cardbook_linear, parent, false
+                )
+            )
+        } else {
+            CardbookGridViewHolder(
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item_cardbook_grid, parent, false
+                )
+            )
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

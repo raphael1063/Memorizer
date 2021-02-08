@@ -1,18 +1,17 @@
 package com.lwj.memorizer.ui.cardbook
 
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.SimpleItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
-import com.lwj.memorizer.data.entities.Cardbook
+import com.lwj.memorizer.data.entities.CardbookListStatus
 import com.lwj.memorizer.databinding.FragmentCardbookBinding
 import com.lwj.memorizer.ext.gone
 import com.lwj.memorizer.ext.slideDown
 import com.lwj.memorizer.ext.slideUp
 import com.lwj.memorizer.ext.visible
 import com.lwj.memorizer.ui.main.MainViewModel
-import javax.inject.Inject
 
 class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
     R.layout.fragment_cardbook
@@ -22,8 +21,14 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
 
     private val sharedViewModel by activityViewModels<MainViewModel>()
 
-    private val adapter by lazy {
-        CardbookAdapter(viewModel).apply {
+    private val linearAdapter by lazy {
+        CardbookAdapter(viewModel, CardbookListStatus.LINEAR).apply {
+            setHasStableIds(true)
+        }
+    }
+
+    private val gridAdapter by lazy {
+        CardbookAdapter(viewModel, CardbookListStatus.GRID).apply {
             setHasStableIds(true)
         }
     }
@@ -36,17 +41,31 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
         binding.apply {
             vm = viewModel
             svm = sharedViewModel
-            rvCardbookList.adapter = adapter
+            rvCardbookList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            rvCardbookList.adapter = linearAdapter
        }
     }
 
     override fun onObserve() {
         with(viewModel) {
             cardbookList.observe(viewLifecycleOwner, { list ->
-                adapter.submitList(list)
+                linearAdapter.submitList(list)
             })
         }
         with(sharedViewModel) {
+            isGridView.observe(viewLifecycleOwner, {
+                if(it) {
+                    binding.apply {
+                        rvCardbookList.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+                        rvCardbookList.adapter = gridAdapter
+                    }
+                } else {
+                    binding.apply {
+                        rvCardbookList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                        rvCardbookList.adapter = linearAdapter
+                    }
+                }
+            })
             isSearchBarOpened.observe(viewLifecycleOwner, { isVisible ->
                 if(isVisible) {
                     binding.svSearchCardbook.apply {

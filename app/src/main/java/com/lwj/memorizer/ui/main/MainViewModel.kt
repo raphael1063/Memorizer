@@ -9,6 +9,7 @@ import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
 import com.lwj.memorizer.data.entities.Cardbook
+import com.lwj.memorizer.data.entities.CardbookListStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,6 +40,9 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     private val _isGridView = MutableLiveData<Boolean>()
     val isGridView: LiveData<Boolean> = _isGridView
 
+    private val _reorderIconStatus = MutableLiveData<CardbookListStatus>()
+    val reorderIconStatus: LiveData<CardbookListStatus> = _reorderIconStatus
+
     /* Action */
     private val _isSearchBarOpened = MutableLiveData(false)
     val isSearchBarOpened: LiveData<Boolean>
@@ -57,6 +61,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
         get() = _actionAboutButtonClicked
 
     init {
+        _reorderIconStatus.value = CardbookListStatus.LINEAR
         _isGridView.value = false
     }
 
@@ -95,7 +100,13 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     }
 
     fun onReorderMenuClicked() {
-        _isGridView.value = !_isGridView.value!!
+        if(_reorderIconStatus.value == CardbookListStatus.LINEAR) {
+            _isGridView.value = true
+            _reorderIconStatus.value = CardbookListStatus.GRID
+        } else {
+            _isGridView.value = false
+            _reorderIconStatus.value = CardbookListStatus.LINEAR
+        }
     }
 
     fun onSearchMenuClicked() {
