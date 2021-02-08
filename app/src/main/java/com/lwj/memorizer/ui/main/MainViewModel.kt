@@ -36,6 +36,9 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     val isSearchMenuActivate: LiveData<Boolean>
         get() = _isSearchMenuActivate
 
+    private val _isGridView = MutableLiveData<Boolean>()
+    val isGridView: LiveData<Boolean> = _isGridView
+
     /* Action */
     private val _isSearchBarOpened = MutableLiveData(false)
     val isSearchBarOpened: LiveData<Boolean>
@@ -52,6 +55,10 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     private val _actionAboutButtonClicked = MutableLiveData<Event<Unit>>()
     val actionAboutButtonClicked: LiveData<Event<Unit>>
         get() = _actionAboutButtonClicked
+
+    init {
+        _isGridView.value = false
+    }
 
     fun setCurrentNavId(id: Int) {
         when (id) {
@@ -85,6 +92,10 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
             2 -> _currentNavigationItem.value = R.id.nav_training
             3 -> _currentNavigationItem.value = R.id.nav_my_account
         }
+    }
+
+    fun onReorderMenuClicked() {
+        _isGridView.value = !_isGridView.value!!
     }
 
     fun onSearchMenuClicked() {

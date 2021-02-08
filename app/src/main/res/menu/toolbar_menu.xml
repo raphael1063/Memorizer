@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/toolbar_main_reorder"
+        android:icon="@drawable/ic_list_view"
+        android:title="@string/reorder"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/toolbar_menu_cardbook_search"
         android:icon="@drawable/ic_search_inactive"
         android:title="@string/search"

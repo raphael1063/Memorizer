@@ -45,6 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             vm = viewModel
             lifecycleOwner = this@MainActivity
             vp2Main.adapter = PagerAdapter(supportFragmentManager, lifecycle, fragments)
+            vp2Main.offscreenPageLimit = 4
             toolbarMain.menu.getItem(0)
         }
     }
@@ -59,16 +60,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 binding.vp2Main.currentItem = position
             })
             isCardbookView.observe(this@MainActivity, { boolean ->
-                binding.toolbarMain.menu[0].isVisible = boolean
                 binding.toolbarMain.menu[1].isVisible = boolean
+                binding.toolbarMain.menu[2].isVisible = boolean
+            })
+            isGridView.observe(this@MainActivity, { isGridView ->
+                if(isGridView) {
+                    binding.toolbarMain.menu[0].icon =
+                        resources.getDrawable(R.drawable.ic_grid_view, theme)
+                } else {
+                    binding.toolbarMain.menu[0].icon =
+                        resources.getDrawable(R.drawable.ic_list_view, theme)
+                }
             })
             isSearchMenuActivate.observe(this@MainActivity, { isActivated ->
                 if (isActivated) {
-                    binding.toolbarMain.menu[0].icon =
-                        resources.getDrawable(R.drawable.ic_search_active, null)
+                    binding.toolbarMain.menu[1].icon =
+                        resources.getDrawable(R.drawable.ic_search_active, theme)
                 } else {
-                    binding.toolbarMain.menu[0].icon =
-                        resources.getDrawable(R.drawable.ic_search_inactive, null)
+                    binding.toolbarMain.menu[1].icon =
+                        resources.getDrawable(R.drawable.ic_search_inactive, theme)
                 }
             })
             actionSettingButtonClicked.observe(this@MainActivity, { event ->
