@@ -37,8 +37,8 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     val isSearchMenuActivate: LiveData<Boolean>
         get() = _isSearchMenuActivate
 
-    private val _isGridView = MutableLiveData<Boolean>()
-    val isGridView: LiveData<Boolean> = _isGridView
+    private val _isGridView = MutableLiveData<Event<Boolean>>()
+    val isGridView: LiveData<Event<Boolean>> = _isGridView
 
     private val _reorderIconStatus = MutableLiveData<CardbookListStatus>()
     val reorderIconStatus: LiveData<CardbookListStatus> = _reorderIconStatus
@@ -62,7 +62,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
 
     init {
         _reorderIconStatus.value = CardbookListStatus.LINEAR
-        _isGridView.value = false
+        _isGridView.value = Event(false)
     }
 
     fun setCurrentNavId(id: Int) {
@@ -101,10 +101,10 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
 
     fun onReorderMenuClicked() {
         if(_reorderIconStatus.value == CardbookListStatus.LINEAR) {
-            _isGridView.value = true
+            _isGridView.value = Event(true)
             _reorderIconStatus.value = CardbookListStatus.GRID
         } else {
-            _isGridView.value = false
+            _isGridView.value = Event(false)
             _reorderIconStatus.value = CardbookListStatus.LINEAR
         }
     }

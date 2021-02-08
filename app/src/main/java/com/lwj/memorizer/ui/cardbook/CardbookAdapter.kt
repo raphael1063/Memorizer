@@ -12,11 +12,11 @@ import com.lwj.memorizer.data.entities.CardbookListStatus
 import com.lwj.memorizer.databinding.ItemCardbookGridBinding
 import com.lwj.memorizer.databinding.ItemCardbookLinearBinding
 
-class CardbookAdapter(private val viewModel: CardbookViewModel, private val status: CardbookListStatus) :
+class CardbookAdapter(private val viewModel: CardbookViewModel, private var status: CardbookListStatus) :
     ListAdapter<Cardbook, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if(status == CardbookListStatus.LINEAR) {
+        return if(viewType == 0) {
             CardbookLinearViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
@@ -33,6 +33,14 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private val stat
         }
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return if(status == CardbookListStatus.LINEAR) {
+            0
+        } else {
+            1
+        }
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is CardbookGridViewHolder -> {
@@ -42,7 +50,10 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private val stat
                 holder.bind(getItem(position))
             }
         }
+    }
 
+    fun changeLayoutManager(status: CardbookListStatus) {
+        this.status = status
     }
 
     inner class CardbookGridViewHolder(private val binding: ItemCardbookGridBinding) :
