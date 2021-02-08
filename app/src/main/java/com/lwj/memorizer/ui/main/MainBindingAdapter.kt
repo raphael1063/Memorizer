@@ -30,12 +30,14 @@ fun setOnPageChangeCallback(vp: ViewPager2, viewModel: MainViewModel) {
 fun setOnToolbarItemClickListener(toolbar: Toolbar, viewModel: MainViewModel) {
     toolbar.setOnMenuItemClickListener {
         when (it.itemId) {
-            R.id.toolbar_main_reorder -> viewModel.onReorderMenuClicked()
+            //R.id.toolbar_main_reorder -> viewModel.onReorderMenuClicked()
             R.id.toolbar_menu_cardbook_search -> viewModel.onSearchMenuClicked()
             R.id.toolbar_menu_add_cardbook -> viewModel.onAddCardbookClicked()
             R.id.toolbar_menu_settings -> viewModel.onSettingMenuClicked()
             R.id.toolbar_menu_support -> viewModel.onSupportMenuClicked()
             R.id.toolbar_menu_about -> viewModel.onAboutMenuClicked()
+            R.id.menu_shown_grid -> viewModel.changeLayoutManagerGird()
+            R.id.menu_shown_linear -> viewModel.changeLayoutManagerLinear()
         }
         true
     }

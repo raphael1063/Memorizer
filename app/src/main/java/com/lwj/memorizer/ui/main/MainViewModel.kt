@@ -1,6 +1,5 @@
 package com.lwj.memorizer.ui.main
 
-import android.icu.util.LocaleData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -10,7 +9,9 @@ import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
 import com.lwj.memorizer.data.entities.Cardbook
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -56,8 +57,18 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     val actionAboutButtonClicked: LiveData<Event<Unit>>
         get() = _actionAboutButtonClicked
 
+    private val _layoutSubject: PublishSubject<RecyclerLayoutManager> = PublishSubject.create()
+
+    private val _layoutState = MutableLiveData<RecyclerLayoutManager>()
+    val layoutState: LiveData<RecyclerLayoutManager>
+        get() = _layoutState
+
     init {
         _isGridView.value = false
+
+        _layoutSubject.throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe { _layoutState.value = it }
+            .let(compositeDisposable::add)
     }
 
     fun setCurrentNavId(id: Int) {
@@ -98,6 +109,9 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
         _isGridView.value = !_isGridView.value!!
     }
 
+    fun changeLayoutManagerLinear() = _layoutSubject.onNext(RecyclerLayoutManager.LINEAR)
+    fun changeLayoutManagerGird() = _layoutSubject.onNext(RecyclerLayoutManager.GRID)
+
     fun onSearchMenuClicked() {
         isSearchBarOpened.value?.let {
             _isSearchBarOpened.value = !it
@@ -123,5 +137,10 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
             repository.insertCardbook(Cardbook( "title $index", false, null))
         }
         index++
+    }
+
+    enum class RecyclerLayoutManager {
+        LINEAR,
+        GRID
     }
 }

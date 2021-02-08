@@ -2,7 +2,11 @@ package com.lwj.memorizer.ui.cardbook
 
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
 import com.lwj.memorizer.data.entities.Cardbook
@@ -57,6 +61,16 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
                     binding.svSearchCardbook.apply {
                         slideUp(requireContext())
                         gone()
+                    }
+                }
+            })
+            layoutState.observe(this@CardbookFragment, { layoutManager ->
+                when (layoutManager) {
+                    MainViewModel.RecyclerLayoutManager.LINEAR -> {
+                        binding.rvCardbookList.layoutManager = LinearLayoutManager(this@CardbookFragment.context)
+                    }
+                    MainViewModel.RecyclerLayoutManager.GRID -> {
+                        binding.rvCardbookList.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
                     }
                 }
             })
