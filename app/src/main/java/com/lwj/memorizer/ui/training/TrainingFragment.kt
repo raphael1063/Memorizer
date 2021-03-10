@@ -13,6 +13,6 @@ class TrainingFragment : BaseFragment<FragmentTrainingBinding>(
     override fun setBinding() {
     }
 
-    override fun onObserve() {
+    override fun observe() {
     }
 }

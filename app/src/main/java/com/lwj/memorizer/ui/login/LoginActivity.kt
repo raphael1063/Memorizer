@@ -22,7 +22,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
         }
     }
 
-    override fun onObserve() {
+    override fun observe() {
         viewModel.run {
             actionLogin.observe(this@LoginActivity, { event ->
                 event.getContentIfNotHandled()?.let {

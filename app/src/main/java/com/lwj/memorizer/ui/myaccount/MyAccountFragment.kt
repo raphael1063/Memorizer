@@ -13,6 +13,6 @@ class MyAccountFragment : BaseFragment<FragmentMyAccountBinding>(
     override fun setBinding() {
     }
 
-    override fun onObserve() {
+    override fun observe() {
     }
 }

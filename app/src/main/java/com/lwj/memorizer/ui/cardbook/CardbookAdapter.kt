@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lwj.memorizer.R
 import com.lwj.memorizer.data.entities.Cardbook
 import com.lwj.memorizer.data.entities.CardbookListStatus
+import com.lwj.memorizer.data.entities.GRID_TYPE
+import com.lwj.memorizer.data.entities.LINEAR_TYPE
 import com.lwj.memorizer.databinding.ItemCardbookGridBinding
 import com.lwj.memorizer.databinding.ItemCardbookLinearBinding
 
@@ -16,7 +18,7 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private var stat
     ListAdapter<Cardbook, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if(viewType == 0) {
+        return if(viewType == LINEAR_TYPE) {
             CardbookLinearViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
@@ -33,13 +35,7 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private var stat
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if(status == CardbookListStatus.LINEAR) {
-            0
-        } else {
-            1
-        }
-    }
+    override fun getItemViewType(position: Int): Int = if(status == CardbookListStatus.LINEAR) LINEAR_TYPE else GRID_TYPE
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
@@ -85,7 +81,7 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private var stat
     companion object {
         private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<Cardbook>() {
             override fun areItemsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
-                return oldItem.title == newItem.title
+                return oldItem.idx == newItem.idx
             }
 
             override fun areContentsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {

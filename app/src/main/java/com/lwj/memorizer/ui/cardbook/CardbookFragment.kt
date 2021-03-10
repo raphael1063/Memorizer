@@ -41,7 +41,7 @@ class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
        }
     }
 
-    override fun onObserve() {
+    override fun observe() {
         with(viewModel) {
             cardbookList.observe(viewLifecycleOwner, { list ->
                 adapter.submitList(list)

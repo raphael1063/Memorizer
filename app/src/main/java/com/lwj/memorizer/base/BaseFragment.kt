@@ -30,10 +30,10 @@ abstract class BaseFragment<VB: ViewDataBinding>(
         super.onViewCreated(view, savedInstanceState)
         start()
         setBinding()
-        onObserve()
+        observe()
     }
 
     abstract fun start()
     abstract fun setBinding()
-    abstract fun onObserve()
+    abstract fun observe()
 }

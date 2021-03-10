@@ -14,7 +14,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     override fun setBinding() {
     }
 
-    override fun onObserve() {
+    override fun observe() {
     }
 
 }

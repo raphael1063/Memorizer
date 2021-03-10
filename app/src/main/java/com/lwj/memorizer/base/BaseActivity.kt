@@ -18,9 +18,9 @@ abstract class BaseActivity<VB : ViewDataBinding>(
         binding = DataBindingUtil.setContentView(this, layoutRes)
         binding.lifecycleOwner = this
         start()
-        onObserve()
+        observe()
     }
 
     abstract fun start()
-    abstract fun onObserve()
+    abstract fun observe()
 }

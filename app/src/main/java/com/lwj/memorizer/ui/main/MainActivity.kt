@@ -47,12 +47,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             lifecycleOwner = this@MainActivity
             vp2Main.adapter = PagerAdapter(supportFragmentManager, lifecycle, fragments)
             vp2Main.offscreenPageLimit = 4
+            vp2Main.isUserInputEnabled = false // true if want user can scroll pages.
             toolbarMain.menu.getItem(0)
         }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    override fun onObserve() {
+    override fun observe() {
         with(viewModel) {
             currentNavigationItem.observe(this@MainActivity, { resId ->
                 binding.bnvMain.selectedItemId = resId
