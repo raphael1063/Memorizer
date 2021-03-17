@@ -8,7 +8,7 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.lwj.memorizer"
@@ -64,12 +64,12 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
 
     /*Test*/
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     /*RxJava*/
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
@@ -91,9 +91,6 @@ dependencies {
 
     /*Material Design*/
     implementation 'com.google.android.material:material:1.3.0'
-
-    /*Coordinator Layout*/
-    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
     /*Constraint Layout*/
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'

@@ -2,10 +2,10 @@ package com.lwj.memorizer.ui.home
 
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
-import com.lwj.memorizer.databinding.FragmentHomeBinding
+import com.lwj.memorizer.databinding.FragHomeBinding
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(
-    R.layout.fragment_home
+class HomeFragment : BaseFragment<FragHomeBinding>(
+    R.layout.frag_home
 ) {
 
     override fun start() {
