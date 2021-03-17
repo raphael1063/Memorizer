@@ -5,7 +5,7 @@ import com.lwj.memorizer.base.BaseFragment
 import com.lwj.memorizer.databinding.FragmentMyAccountBinding
 
 class MyAccountFragment : BaseFragment<FragmentMyAccountBinding>(
-    R.layout.fragment_my_account
+    R.layout.frag_my_account
 ) {
     override fun start() {
     }

@@ -5,7 +5,7 @@ import com.lwj.memorizer.base.BaseFragment
 import com.lwj.memorizer.databinding.FragmentTrainingBinding
 
 class TrainingFragment : BaseFragment<FragmentTrainingBinding>(
-    R.layout.fragment_training
+    R.layout.frag_training
 ){
     override fun start() {
     }

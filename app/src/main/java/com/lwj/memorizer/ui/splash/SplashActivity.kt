@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(
-    R.layout.activity_splash
+    R.layout.act_splash
 ) {
 
     override fun start() {

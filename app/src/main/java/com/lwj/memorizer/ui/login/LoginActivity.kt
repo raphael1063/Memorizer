@@ -3,14 +3,15 @@ package com.lwj.memorizer.ui.login
 import androidx.activity.viewModels
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
-import com.lwj.memorizer.databinding.ActivityLoginBinding
+import com.lwj.memorizer.databinding.ActLoginBinding
+
 import com.lwj.memorizer.ext.openActivity
 import com.lwj.memorizer.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity : BaseActivity<ActivityLoginBinding>(
-    R.layout.activity_login
+class LoginActivity : BaseActivity<ActLoginBinding>(
+    R.layout.act_login
 ) {
 
     private val viewModel by viewModels<LoginViewModel>()
