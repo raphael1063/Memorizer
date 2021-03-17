@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
 import com.lwj.memorizer.data.entities.CardbookListStatus
-import com.lwj.memorizer.databinding.FragmentCardbookBinding
+import com.lwj.memorizer.databinding.FragCardbookBinding
 import com.lwj.memorizer.ext.gone
 import com.lwj.memorizer.ext.slideDown
 import com.lwj.memorizer.ext.slideUp
 import com.lwj.memorizer.ext.visible
 import com.lwj.memorizer.ui.main.MainViewModel
 
-class CardbookFragment : BaseFragment<FragmentCardbookBinding>(
-    R.layout.fragment_cardbook
+class CardbookFragment : BaseFragment<FragCardbookBinding>(
+    R.layout.frag_cardbook
 ) {
 
     private val viewModel by activityViewModels<CardbookViewModel>()
