@@ -13,12 +13,13 @@ import com.lwj.memorizer.data.entities.GRID_TYPE
 import com.lwj.memorizer.data.entities.LINEAR_TYPE
 import com.lwj.memorizer.databinding.ItemCardbookGridBinding
 import com.lwj.memorizer.databinding.ItemCardbookLinearBinding
+import com.orhanobut.logger.Logger
 
 class CardbookAdapter(private val viewModel: CardbookViewModel, private var status: CardbookListStatus) :
     ListAdapter<Cardbook, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if(viewType == LINEAR_TYPE) {
+        return if(status == CardbookListStatus.LINEAR) {
             CardbookLinearViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
@@ -35,7 +36,7 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private var stat
         }
     }
 
-    override fun getItemViewType(position: Int): Int = if(status == CardbookListStatus.LINEAR) LINEAR_TYPE else GRID_TYPE
+    override fun getItemViewType(position: Int): Int = position
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
@@ -81,6 +82,8 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private var stat
     companion object {
         private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<Cardbook>() {
             override fun areItemsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
+                Logger.d(oldItem.idx)
+                Logger.d(newItem.idx)
                 return oldItem.idx == newItem.idx
             }
 

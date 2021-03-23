@@ -3,14 +3,14 @@ package com.lwj.memorizer.ui.splash
 import android.content.Intent
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
-import com.lwj.memorizer.databinding.ActivitySplashBinding
+import com.lwj.memorizer.databinding.ActSplashBinding
 import com.lwj.memorizer.ext.openActivity
 import com.lwj.memorizer.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
 @AndroidEntryPoint
-class SplashActivity : BaseActivity<ActivitySplashBinding>(
+class SplashActivity : BaseActivity<ActSplashBinding>(
     R.layout.act_splash
 ) {
 

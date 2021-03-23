@@ -2,9 +2,9 @@ package com.lwj.memorizer.ui.myaccount
 
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
-import com.lwj.memorizer.databinding.FragmentMyAccountBinding
+import com.lwj.memorizer.databinding.FragMyAccountBinding
 
-class MyAccountFragment : BaseFragment<FragmentMyAccountBinding>(
+class MyAccountFragment : BaseFragment<FragMyAccountBinding>(
     R.layout.frag_my_account
 ) {
     override fun start() {

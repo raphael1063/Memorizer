@@ -1,11 +1,13 @@
 package com.lwj.memorizer.ui.cardbook
 
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
 import com.lwj.memorizer.data.entities.CardbookListStatus
+import com.lwj.memorizer.data.entities.GRID_TYPE
 import com.lwj.memorizer.databinding.FragCardbookBinding
 import com.lwj.memorizer.ext.gone
 import com.lwj.memorizer.ext.slideDown
@@ -13,7 +15,7 @@ import com.lwj.memorizer.ext.slideUp
 import com.lwj.memorizer.ext.visible
 import com.lwj.memorizer.ui.main.MainViewModel
 
-class CardbookFragment : BaseFragment<FragCardbookBinding>(
+class   CardbookFragment : BaseFragment<FragCardbookBinding>(
     R.layout.frag_cardbook
 ) {
 
@@ -52,7 +54,7 @@ class CardbookFragment : BaseFragment<FragCardbookBinding>(
                 event.getContentIfNotHandled()?.let {
                     if(it) {
                         binding.apply {
-                            rvCardbookList.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+                            rvCardbookList.layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
                             adapter.changeLayoutManager(CardbookListStatus.GRID)
                         }
                     } else {

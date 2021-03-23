@@ -10,6 +10,6 @@ class SupportActivity : BaseActivity<ActSupportBinding>(
     override fun start() {
     }
 
-    override fun onObserve() {
+    override fun observe() {
     }
 }

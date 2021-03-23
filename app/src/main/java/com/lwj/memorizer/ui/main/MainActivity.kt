@@ -9,12 +9,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
-<<<<<<< HEAD
 import com.lwj.memorizer.data.entities.CardbookListStatus
-import com.lwj.memorizer.databinding.ActivityMainBinding
-=======
 import com.lwj.memorizer.databinding.ActMainBinding
->>>>>>> d0785ef9e8535030c72ab556b51857d92e57435c
 import com.lwj.memorizer.ext.snack
 import com.lwj.memorizer.ui.cardbook.CardbookFragment
 import com.lwj.memorizer.ui.common.PagerAdapter
