@@ -15,7 +15,7 @@ import com.lwj.memorizer.ext.slideUp
 import com.lwj.memorizer.ext.visible
 import com.lwj.memorizer.ui.main.MainViewModel
 
-class   CardbookFragment : BaseFragment<FragCardbookBinding>(
+class CardbookFragment : BaseFragment<FragCardbookBinding>(
     R.layout.frag_cardbook
 ) {
 
@@ -23,24 +23,23 @@ class   CardbookFragment : BaseFragment<FragCardbookBinding>(
 
     private val sharedViewModel by activityViewModels<MainViewModel>()
 
+    private lateinit var layoutManager: StaggeredGridLayoutManager
+
     private val adapter by lazy {
-        CardbookAdapter(viewModel, CardbookListStatus.LINEAR).apply {
-            setHasStableIds(true)
-        }
+        CardbookAdapter(viewModel, layoutManager)
     }
 
-
     override fun start() {
-
     }
 
     override fun setBinding() {
         binding.apply {
             vm = viewModel
             svm = sharedViewModel
-            rvCardbookList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = StaggeredGridLayoutManager(1, GridLayoutManager.VERTICAL)
+            rvCardbookList.layoutManager = layoutManager
             rvCardbookList.adapter = adapter
-       }
+        }
     }
 
     override fun observe() {
@@ -52,22 +51,18 @@ class   CardbookFragment : BaseFragment<FragCardbookBinding>(
         with(sharedViewModel) {
             isGridView.observe(viewLifecycleOwner, { event ->
                 event.getContentIfNotHandled()?.let {
-                    if(it) {
-                        binding.apply {
-                            rvCardbookList.layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
-                            adapter.changeLayoutManager(CardbookListStatus.GRID)
+                    binding.apply {
+                        if (it) {
+                            layoutManager.spanCount = 2
+                        } else {
+                            layoutManager.spanCount = 1
                         }
-                    } else {
-                        binding.apply {
-                            rvCardbookList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                            adapter.changeLayoutManager(CardbookListStatus.LINEAR)
-                        }
+                        adapter.notifyItemRangeChanged(0, adapter.itemCount)
                     }
                 }
-
             })
             isSearchBarOpened.observe(viewLifecycleOwner, { isVisible ->
-                if(isVisible) {
+                if (isVisible) {
                     binding.svSearchCardbook.apply {
                         slideDown(requireContext())
                         visible()
