@@ -15,4 +15,6 @@
     <string name="about">About</string>
     <string name="add_cardbook">Add Cardbook</string>
     <string name="reorder">Reorder</string>
+    <string name="cardbook_title_hint">Please enter a title.</string>
+    <string name="save">Save</string>
 </resources>

@@ -18,5 +18,5 @@ object AppModule {
     fun provideAppDatabase(@ApplicationContext context: Context) = AppDatabase.getInstance(context)
 
     @Provides
-    fun provideCardbookDao(appDatabase: AppDatabase) = appDatabase.cardbookDao
+    fun provideCardbookDao(appDatabase: AppDatabase) = appDatabase.cardbookListDao
 }

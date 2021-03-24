@@ -14,9 +14,9 @@ import androidx.room.PrimaryKey
 //    )]
 //)
 @Entity(
-    tableName = "cardbook"
+    tableName = "cardbook_list"
 )
-data class Cardbook(
+data class CardbookList(
 
     @ColumnInfo(name = "title")
     val title: String,
