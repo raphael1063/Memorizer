@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.support.SupportActivity"/>
+        <activity android:name=".ui.about.AboutActivity"/>
+        <activity android:name=".ui.setting.SettingActivity"/>
     </application>
-
 </manifest>

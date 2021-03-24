@@ -11,11 +11,15 @@ import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.data.entities.CardbookListStatus
 import com.lwj.memorizer.databinding.ActMainBinding
+import com.lwj.memorizer.ext.openActivity
 import com.lwj.memorizer.ext.snack
+import com.lwj.memorizer.ui.about.AboutActivity
 import com.lwj.memorizer.ui.cardbook.CardbookFragment
 import com.lwj.memorizer.ui.common.PagerAdapter
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.myaccount.MyAccountFragment
+import com.lwj.memorizer.ui.setting.SettingActivity
+import com.lwj.memorizer.ui.support.SupportActivity
 import com.lwj.memorizer.ui.training.TrainingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -62,6 +66,7 @@ class MainActivity : BaseActivity<ActMainBinding>(
                 binding.vp2Main.currentItem = position
             })
             isCardbookView.observe(this@MainActivity, { boolean ->
+                binding.toolbarMain.menu[0].isVisible = boolean
                 binding.toolbarMain.menu[1].isVisible = boolean
                 binding.toolbarMain.menu[2].isVisible = boolean
             })
@@ -85,17 +90,17 @@ class MainActivity : BaseActivity<ActMainBinding>(
             })
             actionSettingButtonClicked.observe(this@MainActivity, { event ->
                 event.getContentIfNotHandled()?.let {
-
+                    openActivity(SettingActivity::class.java)
                 }
             })
             actionSupportButtonClicked.observe(this@MainActivity, { event ->
                 event.getContentIfNotHandled()?.let {
-
+                    openActivity(SupportActivity::class.java)
                 }
             })
             actionAboutButtonClicked.observe(this@MainActivity, { event ->
                 event.getContentIfNotHandled()?.let {
-
+                    openActivity(AboutActivity::class.java)
                 }
             })
         }
