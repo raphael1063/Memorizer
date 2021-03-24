@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.lwj.memorizer.ui.cardbook.CardbookViewModel" />
+            type="com.lwj.memorizer.ui.cardbooklist.CardbookListViewModel" />
         <variable
             name="svm"
             type="com.lwj.memorizer.ui.main.MainViewModel" />
@@ -45,7 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sv_search_cardbook"
-            tools:listitem="@layout/item_cardbook_linear" />
+            tools:listitem="@layout/item_cardbook_list_linear" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

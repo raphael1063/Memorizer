@@ -1,32 +1,29 @@
-package com.lwj.memorizer.ui.cardbook
+package com.lwj.memorizer.ui.cardbooklist
 
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
-import com.lwj.memorizer.data.entities.CardbookListStatus
-import com.lwj.memorizer.data.entities.GRID_TYPE
-import com.lwj.memorizer.databinding.FragCardbookBinding
+import com.lwj.memorizer.databinding.FragCardbookListBinding
 import com.lwj.memorizer.ext.gone
 import com.lwj.memorizer.ext.slideDown
 import com.lwj.memorizer.ext.slideUp
 import com.lwj.memorizer.ext.visible
 import com.lwj.memorizer.ui.main.MainViewModel
 
-class CardbookFragment : BaseFragment<FragCardbookBinding>(
-    R.layout.frag_cardbook
+class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
+    R.layout.frag_cardbook_list
 ) {
 
-    private val viewModel by activityViewModels<CardbookViewModel>()
+    private val viewModel by activityViewModels<CardbookListViewModel>()
 
     private val sharedViewModel by activityViewModels<MainViewModel>()
 
     private lateinit var layoutManager: StaggeredGridLayoutManager
 
     private val adapter by lazy {
-        CardbookAdapter(viewModel, layoutManager)
+        CardbookListAdapter(viewModel, layoutManager)
     }
 
     override fun start() {
@@ -44,7 +41,7 @@ class CardbookFragment : BaseFragment<FragCardbookBinding>(
 
     override fun observe() {
         with(viewModel) {
-            cardbookList.observe(viewLifecycleOwner, { list ->
+            cardbookListList.observe(viewLifecycleOwner, { list ->
                 adapter.submitList(list)
             })
         }

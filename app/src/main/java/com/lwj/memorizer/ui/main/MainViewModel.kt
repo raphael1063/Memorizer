@@ -1,6 +1,5 @@
 package com.lwj.memorizer.ui.main
 
-import android.icu.util.LocaleData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -8,7 +7,7 @@ import com.lwj.memorizer.Event
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
-import com.lwj.memorizer.data.entities.Cardbook
+import com.lwj.memorizer.data.entities.CardbookList
 import com.lwj.memorizer.data.entities.CardbookListStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -131,7 +130,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     var index = 0
     fun onAddCardbookClicked() {
         viewModelScope.launch {
-            repository.insertCardbook(Cardbook( "title $index", false, null))
+            repository.insertCardbook(CardbookList( "title $index", false, null))
         }
         index++
     }

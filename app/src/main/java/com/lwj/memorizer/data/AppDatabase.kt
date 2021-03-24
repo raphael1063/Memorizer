@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.lwj.memorizer.data.dao.CardbookDao
-import com.lwj.memorizer.data.entities.Cardbook
+import com.lwj.memorizer.data.dao.CardbookListDao
+import com.lwj.memorizer.data.entities.CardbookList
 
 
-@Database(entities = [Cardbook::class], version = 1, exportSchema = false)
+@Database(entities = [CardbookList::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract val cardbookDao: CardbookDao
+    abstract val cardbookListDao: CardbookListDao
 
     companion object {
 
@@ -35,7 +35,9 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context, AppDatabase::class.java, "room_db").build()
+            return Room.databaseBuilder(context, AppDatabase::class.java, "room_db")
+                .fallbackToDestructiveMigration()
+                .build()
         }
     }
 }

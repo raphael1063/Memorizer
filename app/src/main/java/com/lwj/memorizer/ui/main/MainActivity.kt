@@ -12,7 +12,7 @@ import com.lwj.memorizer.base.BaseActivity
 import com.lwj.memorizer.data.entities.CardbookListStatus
 import com.lwj.memorizer.databinding.ActMainBinding
 import com.lwj.memorizer.ext.snack
-import com.lwj.memorizer.ui.cardbook.CardbookFragment
+import com.lwj.memorizer.ui.cardbooklist.CardbookListFragment
 import com.lwj.memorizer.ui.common.PagerAdapter
 import com.lwj.memorizer.ui.home.HomeFragment
 import com.lwj.memorizer.ui.myaccount.MyAccountFragment
@@ -32,7 +32,7 @@ class MainActivity : BaseActivity<ActMainBinding>(
 
     private val fragments = arrayListOf<Fragment>(
         HomeFragment(),
-        CardbookFragment(),
+        CardbookListFragment(),
         TrainingFragment(),
         MyAccountFragment()
     )

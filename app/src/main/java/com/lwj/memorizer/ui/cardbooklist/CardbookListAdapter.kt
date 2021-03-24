@@ -1,4 +1,4 @@
-package com.lwj.memorizer.ui.cardbook
+package com.lwj.memorizer.ui.cardbooklist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,30 +8,29 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
-import com.lwj.memorizer.data.entities.Cardbook
-import com.lwj.memorizer.data.entities.CardbookListStatus
+import com.lwj.memorizer.data.entities.CardbookList
 import com.lwj.memorizer.data.entities.GRID_TYPE
 import com.lwj.memorizer.data.entities.LINEAR_TYPE
-import com.lwj.memorizer.databinding.ItemCardbookGridBinding
-import com.lwj.memorizer.databinding.ItemCardbookLinearBinding
+import com.lwj.memorizer.databinding.ItemCardbookListGridBinding
+import com.lwj.memorizer.databinding.ItemCardbookListLinearBinding
 import com.orhanobut.logger.Logger
 
-class CardbookAdapter(private val viewModel: CardbookViewModel, private val layoutManager: StaggeredGridLayoutManager) :
-    ListAdapter<Cardbook, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
+class CardbookListAdapter(private val listViewModel: CardbookListViewModel, private val layoutManager: StaggeredGridLayoutManager) :
+    ListAdapter<CardbookList, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if(viewType == LINEAR_TYPE) {
             CardbookLinearViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
-                    R.layout.item_cardbook_linear, parent, false
+                    R.layout.item_cardbook_list_linear, parent, false
                 )
             )
         } else {
             CardbookGridViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
-                    R.layout.item_cardbook_grid, parent, false
+                    R.layout.item_cardbook_list_grid, parent, false
                 )
             )
         }
@@ -50,11 +49,11 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private val layo
         }
     }
 
-    inner class CardbookGridViewHolder(private val binding: ItemCardbookGridBinding) :
+    inner class CardbookGridViewHolder(private val binding: ItemCardbookListGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Cardbook) {
+        fun bind(item: CardbookList) {
             binding.apply {
-                vm = viewModel
+                vm = listViewModel
                 model = item
                 count = 0 //count of words in the cardbook
                 position = adapterPosition
@@ -63,11 +62,11 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private val layo
         }
     }
 
-    inner class CardbookLinearViewHolder(private val binding: ItemCardbookLinearBinding) :
+    inner class CardbookLinearViewHolder(private val binding: ItemCardbookListLinearBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Cardbook) {
+        fun bind(item: CardbookList) {
             binding.apply {
-                vm = viewModel
+                vm = listViewModel
                 model = item
                 count = 0 //count of words in the cardbook
                 position = adapterPosition
@@ -77,14 +76,14 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private val layo
     }
 
     companion object {
-        private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<Cardbook>() {
-            override fun areItemsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
+        private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<CardbookList>() {
+            override fun areItemsTheSame(oldItem: CardbookList, newItem: CardbookList): Boolean {
                 Logger.d(oldItem.idx)
                 Logger.d(newItem.idx)
                 return oldItem.idx == newItem.idx
             }
 
-            override fun areContentsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
+            override fun areContentsTheSame(oldItem: CardbookList, newItem: CardbookList): Boolean {
                 return oldItem == newItem
             }
         }

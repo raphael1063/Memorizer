@@ -7,11 +7,11 @@
 
         <variable
             name="vm"
-            type="com.lwj.memorizer.ui.cardbook.CardbookViewModel" />
+            type="com.lwj.memorizer.ui.cardbooklist.CardbookListViewModel" />
 
         <variable
             name="model"
-            type="com.lwj.memorizer.data.entities.Cardbook" />
+            type="com.lwj.memorizer.data.entities.CardbookList" />
 
         <variable
             name="count"
@@ -29,7 +29,7 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:onClick="@{() -> vm.removeCardbook(model.idx)}"
+        android:onClick="@{() -> vm.onCardbookItemClicked(model.idx)}"
         app:cardCornerRadius="8dp"
         app:contentPadding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +56,7 @@
                 android:id="@+id/iv_cardbook_cover"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_folder"
+                android:src="@drawable/ic_cardbook"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
