@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
 import com.lwj.memorizer.data.entities.Cardbook
 import com.lwj.memorizer.data.entities.CardbookListStatus
@@ -15,11 +16,11 @@ import com.lwj.memorizer.databinding.ItemCardbookGridBinding
 import com.lwj.memorizer.databinding.ItemCardbookLinearBinding
 import com.orhanobut.logger.Logger
 
-class CardbookAdapter(private val viewModel: CardbookViewModel, private var status: CardbookListStatus) :
+class CardbookAdapter(private val viewModel: CardbookViewModel, private val layoutManager: StaggeredGridLayoutManager) :
     ListAdapter<Cardbook, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if(status == CardbookListStatus.LINEAR) {
+        return if(viewType == LINEAR_TYPE) {
             CardbookLinearViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
@@ -36,7 +37,7 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private var stat
         }
     }
 
-    override fun getItemViewType(position: Int): Int = position
+    override fun getItemViewType(position: Int) = if(layoutManager.spanCount == 1) LINEAR_TYPE else GRID_TYPE
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
@@ -47,10 +48,6 @@ class CardbookAdapter(private val viewModel: CardbookViewModel, private var stat
                 holder.bind(getItem(position))
             }
         }
-    }
-
-    fun changeLayoutManager(status: CardbookListStatus) {
-        this.status = status
     }
 
     inner class CardbookGridViewHolder(private val binding: ItemCardbookGridBinding) :
