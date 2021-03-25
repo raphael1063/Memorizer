@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.lwj.memorizer.Event
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
+import com.lwj.memorizer.ext.runEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -16,6 +17,6 @@ class LoginViewModel @Inject constructor(private val repository: Repository) : B
         get() = _actionLogin
 
     fun onLogin() {
-        _actionLogin.value = Event(Unit)
+        _actionLogin.runEvent()
     }
 }

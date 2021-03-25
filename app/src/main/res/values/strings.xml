@@ -7,6 +7,7 @@
     <string name="my_account">My Account</string>
     <string name="training">Training</string>
     <string name="search">Search</string>
+    <string name="save_button_text">Save</string>
 
     <!--    Alert   -->
     <string name="back_press_alert">Please click BACK again to exit</string>
@@ -16,5 +17,5 @@
     <string name="add_cardbook">Add Cardbook</string>
     <string name="reorder">Reorder</string>
     <string name="cardbook_title_hint">Please enter a title.</string>
-    <string name="save">Save</string>
+    <string name="empty_cardbook_title">"Please enter a title"</string>
 </resources>

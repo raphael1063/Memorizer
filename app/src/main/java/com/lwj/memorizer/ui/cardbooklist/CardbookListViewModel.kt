@@ -19,7 +19,7 @@ class CardbookListViewModel @Inject constructor(private val repository: Reposito
         removeCardbook(key)
     }
 
-    fun removeCardbook(key: Long) {
+    private fun removeCardbook(key: Long) {
         viewModelScope.launch {
             repository.removeCardbook(key)
         }

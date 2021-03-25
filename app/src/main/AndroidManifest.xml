@@ -27,5 +27,6 @@
         <activity android:name=".ui.support.SupportActivity"/>
         <activity android:name=".ui.about.AboutActivity"/>
         <activity android:name=".ui.setting.SettingActivity"/>
+        <activity android:name=".ui.cardbook.CardbookActivity"/>
     </application>
 </manifest>

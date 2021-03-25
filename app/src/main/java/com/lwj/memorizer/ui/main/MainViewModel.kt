@@ -9,6 +9,7 @@ import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
 import com.lwj.memorizer.data.entities.CardbookList
 import com.lwj.memorizer.data.entities.CardbookListStatus
+import com.lwj.memorizer.ext.runEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -59,6 +60,10 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     val actionAboutButtonClicked: LiveData<Event<Unit>>
         get() = _actionAboutButtonClicked
 
+    private val _actionOpenNewCardbook = MutableLiveData<Event<Unit>>()
+    val actionOpenNewCardbook: LiveData<Event<Unit>>
+        get() = _actionOpenNewCardbook
+
     init {
         _reorderIconStatus.value = CardbookListStatus.LINEAR
         _isGridView.value = Event(false)
@@ -73,7 +78,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
             }
             R.id.nav_cardbook -> {
                 _currentViewPagerItem.value = 1
-                _toolbarTitle.value = "Cardbook"
+                _toolbarTitle.value = "Cardbook List"
                 _isCardbookView.value = true
             }
             R.id.nav_training -> {
@@ -99,7 +104,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     }
 
     fun onReorderMenuClicked() {
-        if(_reorderIconStatus.value == CardbookListStatus.LINEAR) {
+        if (_reorderIconStatus.value == CardbookListStatus.LINEAR) {
             _isGridView.value = Event(true)
             _reorderIconStatus.value = CardbookListStatus.GRID
         } else {
@@ -116,22 +121,18 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Ba
     }
 
     fun onSettingMenuClicked() {
-        _actionSettingButtonClicked.value = Event(Unit)
+        _actionSettingButtonClicked.runEvent()
     }
 
     fun onSupportMenuClicked() {
-        _actionSupportButtonClicked.value = Event(Unit)
+        _actionSupportButtonClicked.runEvent()
     }
 
     fun onAboutMenuClicked() {
-        _actionAboutButtonClicked.value = Event(Unit)
+        _actionAboutButtonClicked.runEvent()
     }
 
-    var index = 0
     fun onAddCardbookClicked() {
-        viewModelScope.launch {
-            repository.insertCardbook(CardbookList( "title $index", false, null))
-        }
-        index++
+        _actionOpenNewCardbook.runEvent()
     }
 }
