@@ -22,6 +22,10 @@ class CardbookViewModel @Inject constructor(private val repository: Repository) 
 
     val coverImageUri = MutableLiveData<String>()
 
+    private val _openExitDialog = MutableLiveData<Event<String>>()
+    val openExitDialog: LiveData<Event<String>>
+        get() = _openExitDialog
+
     private val _actionHideKeyboard = MutableLiveData<Event<Unit>>()
     val actionHideKeyboard: LiveData<Event<Unit>>
         get() = _actionHideKeyboard
@@ -38,6 +42,8 @@ class CardbookViewModel @Inject constructor(private val repository: Repository) 
 
     private val resultModel = Cardbook()
 
+    private var originalTitle: String? = null
+
     fun setItem(key: Long) {
         if(key == -1L) {
             isNewCardbook = true
@@ -50,6 +56,7 @@ class CardbookViewModel @Inject constructor(private val repository: Repository) 
     private fun loadCardbook(key: Long) {
         viewModelScope.launch {
             repository.getCardbook(key)?.let { data ->
+                originalTitle = data.title
                 title.value = data.title
                 isBookmarked.value = data.isBookmarked
                 data.coverImageUri?.let {
@@ -104,4 +111,11 @@ class CardbookViewModel @Inject constructor(private val repository: Repository) 
         onToast(R.string.msg_enter_title)
     }
 
+    fun onBackPressed() {
+        originalTitle?.let {
+            _openExitDialog.value = Event(it)
+        } ?: run{
+            _actionFinish.runEvent()
+        }
+    }
 }

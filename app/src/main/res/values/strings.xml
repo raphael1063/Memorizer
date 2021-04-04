@@ -17,5 +17,9 @@
     <string name="add_cardbook">Add Cardbook</string>
     <string name="reorder">Reorder</string>
     <string name="cardbook_title_hint">Please enter a title.</string>
-    <string name="msg_enter_title">"Please enter a title"</string>
+    <string name="msg_enter_title">Please enter a title.</string>
+    <string name="cardbook_back_press_alert_title">Leave Cardbook</string>
+    <string name="cardbook_back_press_alert_subtitle">Are you sure want to leave </string>
+    <string name="str_ok">OK</string>
+    <string name="str_cancel">Cancel</string>
 </resources>

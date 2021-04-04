@@ -7,12 +7,15 @@ import com.lwj.memorizer.data.entities.ARG_CARDBOOK_KEY
 import com.lwj.memorizer.databinding.ActCardbookBinding
 import com.lwj.memorizer.ext.showKeyboard
 import com.lwj.memorizer.ext.toast
+import com.lwj.memorizer.ui.common.CommonAlertDialog
+import com.lwj.memorizer.ui.common.CommonAlertDialog.CommonAlertDialogResult
+import com.lwj.memorizer.ui.common.CommonAlertDialog.CommonAlertDialogResult.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CardbookActivity : BaseActivity<ActCardbookBinding>(
     R.layout.act_cardbook
-) {
+), CommonAlertDialog.AlertDialogListener {
 
     private val viewModel by viewModels<CardbookViewModel>()
 
@@ -38,6 +41,15 @@ class CardbookActivity : BaseActivity<ActCardbookBinding>(
                     overridePendingTransition(R.anim.nothing, R.anim.scale_down)
                 }
             })
+            openExitDialog.observe(this@CardbookActivity, { event ->
+                event.getContentIfNotHandled()?.let { title ->
+                    CommonAlertDialog.getInstance(
+                        R.string.cardbook_back_press_alert_title,
+                        getString(R.string.cardbook_back_press_alert_subtitle) + title + "?",
+                        canCancel = true
+                    ).show(supportFragmentManager, null)
+                }
+            })
             toastStringEvent.observe(this@CardbookActivity, { event ->
                 event.getContentIfNotHandled()?.let { msg ->
                     toast(msg)
@@ -52,7 +64,15 @@ class CardbookActivity : BaseActivity<ActCardbookBinding>(
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        overridePendingTransition(R.anim.nothing, R.anim.scale_down)
+        viewModel.onBackPressed()
+    }
+
+    override fun onAlertDialogResult(result: CommonAlertDialogResult) {
+        when (result) {
+            OK -> {
+                finish()
+                overridePendingTransition(R.anim.nothing, R.anim.scale_down)
+            }
+        }
     }
 }
