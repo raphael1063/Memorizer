@@ -45,7 +45,7 @@ class CardbookActivity : BaseActivity<ActCardbookBinding>(
                 event.getContentIfNotHandled()?.let { title ->
                     CommonAlertDialog.getInstance(
                         R.string.cardbook_back_press_alert_title,
-                        getString(R.string.cardbook_back_press_alert_subtitle) + title + "?",
+                        "${getString(R.string.cardbook_back_press_alert_subtitle)} [$title]?",
                         canCancel = true
                     ).show(supportFragmentManager, null)
                 }

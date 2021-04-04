@@ -26,6 +26,7 @@ class CommonAlertDialog() : BaseDialogFragment<DialogCommonAlertBinding>(
 
     override fun start() {
         requireDialog().window?.setBackgroundDrawableResource(android.R.color.transparent)
+        isCancelable = false
     }
 
     override fun setBinding() {
