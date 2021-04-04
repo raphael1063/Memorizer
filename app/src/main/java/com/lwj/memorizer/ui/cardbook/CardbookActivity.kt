@@ -17,6 +17,7 @@ class CardbookActivity : BaseActivity<ActCardbookBinding>(
     private val viewModel by viewModels<CardbookViewModel>()
 
     override fun start() {
+        overridePendingTransition(R.anim.scale_up, R.anim.nothing)
         binding.apply {
             vm = viewModel
         }
@@ -34,6 +35,7 @@ class CardbookActivity : BaseActivity<ActCardbookBinding>(
             actionFinish.observe(this@CardbookActivity, { event ->
                 event.getContentIfNotHandled()?.let {
                     finish()
+                    overridePendingTransition(R.anim.nothing, R.anim.scale_down)
                 }
             })
             toastStringEvent.observe(this@CardbookActivity, { event ->
@@ -47,5 +49,10 @@ class CardbookActivity : BaseActivity<ActCardbookBinding>(
                 }
             })
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.nothing, R.anim.scale_down)
     }
 }

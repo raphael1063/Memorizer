@@ -54,12 +54,20 @@ fun <T> Fragment.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
 }
 
 /*Toast*/
-fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+fun Activity.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
 }
 
-fun Context.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT) {
+fun Activity.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, this.resources.getText(resId), duration).show()
+}
+
+fun Fragment.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(requireContext(), message, duration).show()
+}
+
+fun Fragment.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(requireContext(), this.resources.getText(resId), duration).show()
 }
 
 /*SnackBar*/
@@ -104,5 +112,11 @@ fun Activity.hideKeyboard() {
 /* show keyboard */
 fun Activity.showKeyboard() {
     val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+}
+
+/* show keyboard */
+fun Fragment.showKeyboard() {
+    val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
 }

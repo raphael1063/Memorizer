@@ -39,8 +39,11 @@ class CardbookViewModel @Inject constructor(private val repository: Repository) 
     private val resultModel = Cardbook()
 
     fun setItem(key: Long) {
-        resultModel.idx = key
-        if(key == -1L) isNewCardbook = true
+        if(key == -1L) {
+            isNewCardbook = true
+        } else {
+            resultModel.idx = key
+        }
         loadCardbook(key)
     }
 

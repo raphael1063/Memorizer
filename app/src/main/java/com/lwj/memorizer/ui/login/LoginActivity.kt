@@ -28,7 +28,6 @@ class LoginActivity : BaseActivity<ActLoginBinding>(
             actionLogin.observe(this@LoginActivity, { event ->
                 event.getContentIfNotHandled()?.let {
                     openActivity(MainActivity::class.java)
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                     finishAffinity()
                 }
             })

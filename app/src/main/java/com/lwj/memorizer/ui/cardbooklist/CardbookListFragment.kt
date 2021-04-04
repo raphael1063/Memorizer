@@ -46,7 +46,6 @@ class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
                     openActivity(CardbookActivity::class.java) {
                         putLong(ARG_CARDBOOK_KEY, key)
                     }
-                    requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 }
             })
         }

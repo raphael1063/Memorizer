@@ -43,6 +43,7 @@ class MainActivity : BaseActivity<ActMainBinding>(
     )
 
     override fun start() {
+        overridePendingTransition(R.anim.fade_in, R.anim.nothing)
         setBinding()
     }
 
