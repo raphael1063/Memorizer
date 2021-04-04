@@ -21,7 +21,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -41,12 +41,13 @@
                     style="@style/TextRegular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="12dp"
                     android:layout_marginVertical="16dp"
                     android:background="@color/transparent"
                     android:hint="@string/cardbook_title_hint"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
-                    android:text="@={vm.cardbookTitle}"
+                    android:text="@={vm.title}"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_cardbook_bookmark"
@@ -58,10 +59,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:paddingHorizontal="16dp"
-                    android:src="@drawable/ic_bookmark_button"
+                    android:src="@{vm.isBookmarked ? @drawable/ic_bookmark_button_on : @drawable/ic_bookmark_button_off}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:onSafeClick="@{() -> vm.onBookmarkClicked()}"
+                    tools:src="@drawable/ic_bookmark_button_on" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -69,14 +72,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_cardbook_save"
-            onSafeClick="@{() -> vm.onSaveButtonClicked()}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/purple_400"
             app:cardCornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:onSafeClick="@{() -> vm.onSaveButtonClicked()}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

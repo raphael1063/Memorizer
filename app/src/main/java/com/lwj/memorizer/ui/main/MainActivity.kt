@@ -67,16 +67,17 @@ class MainActivity : BaseActivity<ActMainBinding>(
                 binding.vp2Main.currentItem = position
             })
             isCardbookView.observe(this@MainActivity, { boolean ->
+                binding.toolbarMain.menu[0].isVisible = boolean
                 binding.toolbarMain.menu[1].isVisible = boolean
                 binding.toolbarMain.menu[2].isVisible = boolean
             })
             reorderIconStatus.observe(this@MainActivity, { status ->
                 if(status == CardbookListStatus.GRID) {
                     binding.toolbarMain.menu[0].icon =
-                        resources.getDrawable(R.drawable.ic_grid_view, theme)
+                        resources.getDrawable(R.drawable.ic_list_view, theme)
                 } else {
                     binding.toolbarMain.menu[0].icon =
-                        resources.getDrawable(R.drawable.ic_list_view, theme)
+                        resources.getDrawable(R.drawable.ic_grid_view, theme)
                 }
             })
             isSearchMenuActivate.observe(this@MainActivity, { isActivated ->

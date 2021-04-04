@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.snackbar.Snackbar
 import com.lwj.memorizer.Event
@@ -42,6 +43,12 @@ fun View.slideDown(context: Context) {
 /*StartActivity*/
 fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
     val intent = Intent(this, it)
+    intent.putExtras(Bundle().apply(extras))
+    startActivity(intent)
+}
+
+fun <T> Fragment.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
+    val intent = Intent(requireContext(), it)
     intent.putExtras(Bundle().apply(extras))
     startActivity(intent)
 }

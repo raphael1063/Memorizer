@@ -40,4 +40,8 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:backgroundTint">@color/heavy_grey</item>
     </style>
+
+    <style name="ItemDivider" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/grey</item>
+    </style>
 </resources>

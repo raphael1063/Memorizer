@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
-import com.lwj.memorizer.data.entities.CardbookList
+import com.lwj.memorizer.data.entities.Cardbook
 import com.lwj.memorizer.data.entities.GRID_TYPE
 import com.lwj.memorizer.data.entities.LINEAR_TYPE
 import com.lwj.memorizer.databinding.ItemCardbookListGridBinding
@@ -16,7 +16,7 @@ import com.lwj.memorizer.databinding.ItemCardbookListLinearBinding
 import com.orhanobut.logger.Logger
 
 class CardbookListAdapter(private val listViewModel: CardbookListViewModel, private val layoutManager: StaggeredGridLayoutManager) :
-    ListAdapter<CardbookList, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
+    ListAdapter<Cardbook, RecyclerView.ViewHolder>(CARDBOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if(viewType == LINEAR_TYPE) {
@@ -51,7 +51,7 @@ class CardbookListAdapter(private val listViewModel: CardbookListViewModel, priv
 
     inner class CardbookGridViewHolder(private val binding: ItemCardbookListGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CardbookList) {
+        fun bind(item: Cardbook) {
             binding.apply {
                 vm = listViewModel
                 model = item
@@ -64,7 +64,7 @@ class CardbookListAdapter(private val listViewModel: CardbookListViewModel, priv
 
     inner class CardbookLinearViewHolder(private val binding: ItemCardbookListLinearBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CardbookList) {
+        fun bind(item: Cardbook) {
             binding.apply {
                 vm = listViewModel
                 model = item
@@ -76,14 +76,14 @@ class CardbookListAdapter(private val listViewModel: CardbookListViewModel, priv
     }
 
     companion object {
-        private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<CardbookList>() {
-            override fun areItemsTheSame(oldItem: CardbookList, newItem: CardbookList): Boolean {
+        private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<Cardbook>() {
+            override fun areItemsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
                 Logger.d(oldItem.idx)
                 Logger.d(newItem.idx)
                 return oldItem.idx == newItem.idx
             }
 
-            override fun areContentsTheSame(oldItem: CardbookList, newItem: CardbookList): Boolean {
+            override fun areContentsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
                 return oldItem == newItem
             }
         }

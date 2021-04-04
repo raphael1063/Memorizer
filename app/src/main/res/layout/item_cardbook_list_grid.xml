@@ -11,7 +11,7 @@
 
         <variable
             name="model"
-            type="com.lwj.memorizer.data.entities.CardbookList" />
+            type="com.lwj.memorizer.data.entities.Cardbook" />
 
         <variable
             name="count"
@@ -48,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
-                android:src="@drawable/ic_bookmark"
+                android:src="@{model.bookmarked ? @drawable/ic_bookmark_on : @drawable/ic_bookmark_off}"
+                tools:src="@drawable/ic_bookmark_on"
                 app:layout_constraintEnd_toEndOf="@+id/iv_cardbook_cover"
                 app:layout_constraintTop_toTopOf="@+id/iv_cardbook_cover" />
 
@@ -59,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
                 android:layout_marginHorizontal="8dp"
-                android:src="@drawable/ic_cardbook"
+                android:src="@drawable/ic_cardbook_big"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +70,7 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/super_light_grey"
+                android:theme="@style/ItemDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_cardbook_cover" />

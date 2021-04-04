@@ -7,16 +7,20 @@ import com.lwj.memorizer.Event
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseViewModel
 import com.lwj.memorizer.data.Repository
-import com.lwj.memorizer.data.entities.CardbookList
+import com.lwj.memorizer.data.entities.Cardbook
 import com.lwj.memorizer.ext.runEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CardbookViewModel@Inject constructor(private val repository: Repository) : BaseViewModel(){
+class CardbookViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
-    val cardbookTitle = MutableLiveData("")
+    val title = MutableLiveData<String>()
+
+    val isBookmarked = MutableLiveData<Boolean>()
+
+    val coverImageUri = MutableLiveData<String>()
 
     private val _actionHideKeyboard = MutableLiveData<Event<Unit>>()
     val actionHideKeyboard: LiveData<Event<Unit>>
@@ -30,21 +34,71 @@ class CardbookViewModel@Inject constructor(private val repository: Repository) :
     val actionFinish: LiveData<Event<Unit>>
         get() = _actionFinish
 
-    private fun saveCardbook(title: String) {
+    private var isNewCardbook: Boolean = false
+
+    private val resultModel = Cardbook()
+
+    fun setItem(key: Long) {
+        resultModel.idx = key
+        if(key == -1L) isNewCardbook = true
+        loadCardbook(key)
+    }
+
+    private fun loadCardbook(key: Long) {
         viewModelScope.launch {
-            repository.insertCardbook(CardbookList(title, false, null))
+            repository.getCardbook(key)?.let { data ->
+                title.value = data.title
+                isBookmarked.value = data.isBookmarked
+                data.coverImageUri?.let {
+                    coverImageUri.value = it
+                }
+            }
+        }
+    }
+
+    private fun saveNewCardbook(isNewCardbook: Boolean, model: Cardbook) {
+        viewModelScope.launch {
+            if (isNewCardbook) repository.insertCardbook(model) else repository.updateCardbook(model)
+        }
+        _actionFinish.runEvent()
+    }
+
+    fun onBookmarkClicked() {
+        isBookmarked.value?.let {
+            isBookmarked.value = !it
         }
     }
 
     fun onSaveButtonClicked() {
-        cardbookTitle.value?.let {  title ->
-            if(title.isEmpty()) {
-                _actionFocusOnTitle.runEvent()
-                onToast(R.string.empty_cardbook_title)
-            } else {
-                saveCardbook(title)
-                _actionFinish.runEvent()
+        setResult()
+        if (isTitleEmpty) focusOnTitle()
+        else saveNewCardbook(isNewCardbook, resultModel)
+    }
+
+    private val isTitleEmpty: Boolean
+        get() {
+            title.value?.let {
+                return it.isEmpty()
+            } ?: return false
+        }
+
+    private fun setResult() {
+        resultModel.apply {
+            this@CardbookViewModel.title.value?.let {
+                title = it
+            }
+            this@CardbookViewModel.isBookmarked.value?.let {
+                isBookmarked = it
+            }
+            this@CardbookViewModel.coverImageUri.value?.let {
+                coverImageUri = it
             }
         }
     }
+
+    private fun focusOnTitle() {
+        _actionFocusOnTitle.runEvent()
+        onToast(R.string.msg_enter_title)
+    }
+
 }

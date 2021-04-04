@@ -11,7 +11,7 @@
 
         <variable
             name="model"
-            type="com.lwj.memorizer.data.entities.CardbookList" />
+            type="com.lwj.memorizer.data.entities.Cardbook" />
 
         <variable
             name="count"
@@ -48,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
-                android:src="@drawable/ic_bookmark"
+                android:src="@{model.bookmarked ? @drawable/ic_bookmark_on : @drawable/ic_bookmark_off}"
+                tools:src="@drawable/ic_bookmark_on"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

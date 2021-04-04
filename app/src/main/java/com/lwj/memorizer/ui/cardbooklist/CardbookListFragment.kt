@@ -5,11 +5,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lwj.memorizer.R
 import com.lwj.memorizer.base.BaseFragment
+import com.lwj.memorizer.data.entities.ARG_CARDBOOK_KEY
 import com.lwj.memorizer.databinding.FragCardbookListBinding
-import com.lwj.memorizer.ext.gone
-import com.lwj.memorizer.ext.slideDown
-import com.lwj.memorizer.ext.slideUp
-import com.lwj.memorizer.ext.visible
+import com.lwj.memorizer.ext.*
+import com.lwj.memorizer.ui.cardbook.CardbookActivity
 import com.lwj.memorizer.ui.main.MainViewModel
 
 class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
@@ -22,9 +21,7 @@ class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
 
     private lateinit var layoutManager: StaggeredGridLayoutManager
 
-    private val adapter by lazy {
-        CardbookListAdapter(viewModel, layoutManager)
-    }
+    private val adapter by lazy { CardbookListAdapter(viewModel, layoutManager) }
 
     override fun start() {
     }
@@ -41,13 +38,20 @@ class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
 
     override fun observe() {
         with(viewModel) {
-            cardbookListList.observe(viewLifecycleOwner, { list ->
+            cardbook.observe(viewLifecycleOwner, { list ->
                 adapter.submitList(list)
+            })
+            openCardbook.observe(viewLifecycleOwner, { event ->
+                event.getContentIfNotHandled()?.let { key ->
+                    openActivity(CardbookActivity::class.java) {
+                        putLong(ARG_CARDBOOK_KEY, key)
+                    }
+                    requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                }
             })
         }
         with(sharedViewModel) {
-            isGridView.observe(viewLifecycleOwner, { event ->
-                event.getContentIfNotHandled()?.let {
+            isGridView.observe(viewLifecycleOwner, {
                     binding.apply {
                         if (it) {
                             layoutManager.spanCount = 2
@@ -56,7 +60,7 @@ class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
                         }
                         adapter.notifyItemRangeChanged(0, adapter.itemCount)
                     }
-                }
+
             })
             isSearchBarOpened.observe(viewLifecycleOwner, { isVisible ->
                 if (isVisible) {
