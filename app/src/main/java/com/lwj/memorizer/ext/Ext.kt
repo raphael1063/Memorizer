@@ -103,6 +103,12 @@ fun View.setOnSafeClick(clickListener: View.OnClickListener?) {
     setOnClickListener(OnSafeClickListener(clickListener))
 }
 
+@BindingAdapter("onLongClick")
+fun View.setOnLongClick(clickListener: View.OnLongClickListener?) : Boolean {
+    setOnLongClickListener(clickListener)
+    return false
+}
+
 /* hide keyboard */
 fun Activity.hideKeyboard() {
     val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

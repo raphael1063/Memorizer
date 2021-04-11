@@ -77,11 +77,12 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:paddingVertical="4dp"
+                        android:background="@color/super_light_grey"
+                        android:paddingVertical="12dp"
                         android:text="@string/str_cancel"
-                        android:textSize="24sp"
+                        android:textSize="20sp"
                         android:theme="@style/TextRegular"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         tools:text="cancel" />
 
                     <View

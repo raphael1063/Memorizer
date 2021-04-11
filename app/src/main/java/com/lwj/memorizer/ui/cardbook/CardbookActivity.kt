@@ -10,6 +10,7 @@ import com.lwj.memorizer.ext.toast
 import com.lwj.memorizer.ui.common.CommonAlertDialog
 import com.lwj.memorizer.ui.common.CommonAlertDialog.CommonAlertDialogResult
 import com.lwj.memorizer.ui.common.CommonAlertDialog.CommonAlertDialogResult.*
+import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -73,6 +74,9 @@ class CardbookActivity : BaseActivity<ActCardbookBinding>(
                 finish()
                 overridePendingTransition(R.anim.nothing, R.anim.scale_down)
             }
+            else -> return
         }
     }
+
+
 }

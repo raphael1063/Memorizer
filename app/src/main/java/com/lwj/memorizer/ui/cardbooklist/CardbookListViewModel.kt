@@ -21,9 +21,18 @@ class CardbookListViewModel @Inject constructor(private val repository: Reposito
     val openCardbook: LiveData<Event<Long>>
         get() = _openCardbook
 
+    private val _isDeleteMode = MutableLiveData(false)
+    val isDeleteMode: LiveData<Boolean>
+        get() = _isDeleteMode
 
     fun onCardbookItemClicked(key: Long) {
        openCardbook(key)
+    }
+
+    fun onCardbookItemLongClicked(key: Long) : Boolean{
+        onToast("LongClicked")
+        _isDeleteMode.value = true
+        return true
     }
 
     private fun openCardbook(key: Long) {

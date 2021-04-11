@@ -10,6 +10,7 @@ class OnSafeClickListener(
     constructor(action: View.OnClickListener?) : this(300, action)
 
     private var lastTimeClicked: Long = 0
+
     override fun onClick(v: View) {
         if (SystemClock.elapsedRealtime() - lastTimeClicked < defaultInterval) {
             return

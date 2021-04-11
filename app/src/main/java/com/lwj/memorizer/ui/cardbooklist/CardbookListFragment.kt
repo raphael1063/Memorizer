@@ -10,6 +10,7 @@ import com.lwj.memorizer.databinding.FragCardbookListBinding
 import com.lwj.memorizer.ext.*
 import com.lwj.memorizer.ui.cardbook.CardbookActivity
 import com.lwj.memorizer.ui.main.MainViewModel
+import com.orhanobut.logger.Logger
 
 class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
     R.layout.frag_cardbook_list
@@ -48,6 +49,11 @@ class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
                     }
                 }
             })
+            toastStringEvent.observe(viewLifecycleOwner, { event ->
+                event.getContentIfNotHandled()?.let {
+                    toast(it)
+                }
+            })
         }
         with(sharedViewModel) {
             isGridView.observe(viewLifecycleOwner, {
@@ -75,5 +81,10 @@ class CardbookListFragment : BaseFragment<FragCardbookListBinding>(
                 }
             })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Logger.d("ACTIVITY RESUME")
     }
 }

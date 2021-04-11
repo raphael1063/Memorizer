@@ -9,7 +9,9 @@ import com.lwj.memorizer.data.entities.ARG_CAN_CANCEL
 import com.lwj.memorizer.data.entities.ARG_SUBTITLE
 import com.lwj.memorizer.data.entities.ARG_TITLE
 import com.lwj.memorizer.databinding.DialogCommonAlertBinding
+import com.lwj.memorizer.ui.common.CommonAlertDialog.CommonAlertDialogResult.CANCEL
 import com.lwj.memorizer.ui.common.CommonAlertDialog.CommonAlertDialogResult.OK
+import com.orhanobut.logger.Logger
 
 class CommonAlertDialog() : BaseDialogFragment<DialogCommonAlertBinding>(
     R.layout.dialog_common_alert
@@ -17,11 +19,19 @@ class CommonAlertDialog() : BaseDialogFragment<DialogCommonAlertBinding>(
 
     private var listener: AlertDialogListener? = null
 
+    private lateinit var result: CommonAlertDialogResult
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(context is AlertDialogListener) {
             listener = context
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Logger.d("DETACH")
+        listener?.onAlertDialogResult(result)
     }
 
     override fun start() {
@@ -40,8 +50,14 @@ class CommonAlertDialog() : BaseDialogFragment<DialogCommonAlertBinding>(
                 tvAlertCancel.isVisible = true
                 viewAlertButtonDivider.isVisible = true
             }
-            tvAlertCancel.setOnClickListener { dismiss() }
-            tvAlertOk.setOnClickListener { listener?.onAlertDialogResult(OK) }
+            tvAlertCancel.setOnClickListener {
+                result = CANCEL
+                dismiss()
+            }
+            tvAlertOk.setOnClickListener {
+                result = OK
+                dismiss()
+            }
         }
     }
 
@@ -50,7 +66,7 @@ class CommonAlertDialog() : BaseDialogFragment<DialogCommonAlertBinding>(
     }
 
     enum class CommonAlertDialogResult {
-        OK
+        OK, CANCEL
     }
 
     companion object {

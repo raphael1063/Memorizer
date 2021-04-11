@@ -85,6 +85,8 @@ class CardbookViewModel @Inject constructor(private val repository: Repository) 
         else saveNewCardbook(isNewCardbook, resultModel)
     }
 
+
+
     private val isTitleEmpty: Boolean
         get() {
             title.value?.let {

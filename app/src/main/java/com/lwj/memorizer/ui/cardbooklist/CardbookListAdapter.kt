@@ -78,8 +78,6 @@ class CardbookListAdapter(private val listViewModel: CardbookListViewModel, priv
     companion object {
         private val CARDBOOK_COMPARATOR = object : DiffUtil.ItemCallback<Cardbook>() {
             override fun areItemsTheSame(oldItem: Cardbook, newItem: Cardbook): Boolean {
-                Logger.d(oldItem.idx)
-                Logger.d(newItem.idx)
                 return oldItem.idx == newItem.idx
             }
 
